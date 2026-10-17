@@ -1,0 +1,28 @@
+{
+  "name": "career-code-school",
+  "private": true,
+  "description": "Static learning site: from card support to junior backend developer.",
+  "type": "module",
+  "scripts": {
+    "serve": "node tools/serve.mjs",
+    "vendor": "node tools/build-vendor.mjs",
+    "check": "node tools/check-content.mjs",
+    "test": "playwright test"
+  },
+  "devDependencies": {
+    "@codemirror/commands": "^6.8.0",
+    "@codemirror/lang-python": "^6.2.1",
+    "@codemirror/lang-sql": "^6.10.0",
+    "@codemirror/language": "^6.11.0",
+    "@codemirror/state": "^6.5.0",
+    "@codemirror/view": "^6.38.0",
+    "@codemirror/autocomplete": "^6.18.0",
+    "@lezer/highlight": "^1.2.0",
+    "@playwright/test": "1.56.1",
+    "esbuild": "0.25.10",
+    "jszip": "3.10.1",
+    "marked": "16.4.1",
+    "pyodide": "0.29.5",
+    "sql.js": "1.13.0"
+  }
+}
