@@ -19,6 +19,18 @@ let state = load();
 let storageWorks = true;
 const listeners = new Set();
 
+// If the course is open in two tabs, pick up progress saved by the other one
+// instead of overwriting it.
+try {
+  window.addEventListener("storage", (event) => {
+    if (event.key !== STORAGE_KEY) return;
+    state = load();
+    listeners.forEach((fn) => fn(state));
+  });
+} catch {
+  // No window (shouldn't happen in a browser); nothing to sync.
+}
+
 function load() {
   try {
     const raw = window.localStorage.getItem(STORAGE_KEY);

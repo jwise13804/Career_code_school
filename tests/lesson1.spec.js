@@ -85,3 +85,14 @@ test.describe("vertical slice: Phase 1 lesson 1", () => {
     await expect(lab.locator(".output-text")).toHaveText("back again", { timeout: 60_000 });
   });
 });
+
+test("code that runs too long is stopped automatically with a friendly explanation", async ({ page, isMobile }) => {
+  test.skip(isMobile, "same code path on every device; run once");
+  test.setTimeout(60_000);
+  await page.goto("#/lesson/p1-05-loops");
+  const lab = page.locator(".lab").first();
+  await setCode(page, lab, "total = 0\nwhile total >= 0:\n    total = total + 1");
+  await lab.getByRole("button", { name: "Run" }).click();
+  await expect(lab.locator(".error-box")).toContainText("more than 10 seconds", { timeout: 40_000 });
+  await expect(lab.locator(".error-box")).toContainText("loop never ends");
+});
