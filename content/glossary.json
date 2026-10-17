@@ -1,0 +1,4 @@
+[
+  { "slug": "string", "term": "String", "short": "A piece of text in code, written inside quote marks, like \"Hello\".", "everyday": "The exact wording of a templated message: it goes out word for word.", "lesson": "p1-01-hello" },
+  { "slug": "comment", "term": "Comment", "short": "A note in code that starts with #. Python ignores it.", "everyday": "Internal case notes: useful for the team, invisible to the customer.", "lesson": "p1-01-hello" }
+]

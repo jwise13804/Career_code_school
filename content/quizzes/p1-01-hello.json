@@ -1,0 +1,68 @@
+{
+  "id": "p1-01-hello",
+  "title": "Quick check: your first program",
+  "questions": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "prompt": "What does `print(\"Card blocked\")` do?",
+      "options": [
+        "Shows the text Card blocked on the screen",
+        "Blocks the card",
+        "Sends the text to a printer",
+        "Saves the text into a file"
+      ],
+      "answer": 0,
+      "why": [
+        null,
+        "Python only does exactly what the words say. `print` shows text. It doesn't know anything about cards.",
+        "The name comes from the old days of printing on paper, but today `print` just shows text on the screen.",
+        "Saving to a file is a different instruction. `print` only shows text."
+      ],
+      "explanation": "`print(...)` shows whatever is inside the brackets. Like sending a message in the chat window, it doesn't *do* anything to the account."
+    },
+    {
+      "id": "q2",
+      "type": "mcq",
+      "prompt": "Why does text in Python need quote marks around it?",
+      "options": [
+        "To tell Python it's text to use exactly as written",
+        "To make it bold",
+        "Because Python can only read short words",
+        "They're optional, just good style"
+      ],
+      "answer": 0,
+      "explanation": "Quotes mark the start and end of a **string**: a piece of text. Without them Python thinks the words are instructions or names, and gets confused."
+    },
+    {
+      "id": "q3",
+      "type": "bug",
+      "prompt": "This program should show two messages, but it won't run. Which line has the bug?",
+      "code": "# Card replacement\nprint(\"Hello, Priya!\")\nprint(\"Your card is on its way.)",
+      "answer": 3,
+      "explanation": "Line 3 opens a quote before `Your` but never closes it. Python reads to the end of the line looking for the closing `\"` and gives up with a **SyntaxError**."
+    },
+    {
+      "id": "q4",
+      "type": "fill",
+      "prompt": "Fill in the missing word so this line shows the message on screen.",
+      "code": "_____(\"Your refund has been processed.\")",
+      "answer": ["print"],
+      "caseSensitive": true,
+      "explanation": "`print` is lower case. `Print` with a capital P would give a **NameError**, because Python treats capitals as different letters."
+    },
+    {
+      "id": "q5",
+      "type": "mcq",
+      "prompt": "What happens to a line that starts with `#`?",
+      "options": [
+        "Python ignores it. It's a note for humans",
+        "Python prints it in bold",
+        "Python treats it as a hashtag and shares it",
+        "It makes the program run faster"
+      ],
+      "answer": 0,
+      "explanation": "A `#` starts a **comment**: like internal notes on a case that the customer never sees."
+    }
+  ]
+}

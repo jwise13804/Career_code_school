@@ -1,0 +1,26 @@
+{
+  "title": "Career Code School",
+  "phases": [
+    {
+      "id": "p1",
+      "title": "Foundations: Python, SQL and Git",
+      "months": "Months 1 to 3",
+      "illustration": "phase1",
+      "summary": "Write your first programs in Python, look up thousands of transactions at once with SQL, and save your work with Git.",
+      "project": "A small Python program that totals a customer's transactions, the way a statement does.",
+      "units": [
+        {
+          "title": "Python basics",
+          "summary": "One idea per lesson. Every example uses cards, payments and customers.",
+          "lessons": [
+            {
+              "id": "p1-01-hello",
+              "title": "Your first line of Python",
+              "minutes": 12
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
