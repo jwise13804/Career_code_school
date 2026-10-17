@@ -1,0 +1,46 @@
+{
+  "id": "p1-07-lists",
+  "title": "Quick check: lists",
+  "questions": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "prompt": "`amounts = [4.20, 12.00, 7.50]`. What is `amounts[1]`?",
+      "options": ["12.0", "4.2", "7.5", "An error"],
+      "answer": 0,
+      "explanation": "Positions start at 0, so `amounts[1]` is the **second** item."
+    },
+    {
+      "id": "q2",
+      "type": "mcq",
+      "prompt": "Which gives the **last** item of any list called `amounts`?",
+      "options": ["`amounts[-1]`", "`amounts[len(amounts)]`", "`amounts[last]`", "`amounts.end()`"],
+      "answer": 0,
+      "why": [null, "That's one past the end, so you'd get an IndexError.", "`last` isn't defined.", "Lists don't have an `.end()` method."],
+      "explanation": "Negative indexes count from the end: -1 is the last item."
+    },
+    {
+      "id": "q3",
+      "type": "fill",
+      "prompt": "Add `9.99` to the end of the list: `amounts.______(9.99)`",
+      "answer": ["append"],
+      "caseSensitive": true,
+      "explanation": "`.append()` adds one item to the end of a list."
+    },
+    {
+      "id": "q4",
+      "type": "match",
+      "prompt": "For `amounts = [5, 20, 10]`, match each expression to its result.",
+      "pairs": [["`len(amounts)`", "3"], ["`sum(amounts)`", "35"], ["`max(amounts)`", "20"], ["`min(amounts)`", "5"]],
+      "explanation": "These built-in functions save you writing loops for the common jobs."
+    },
+    {
+      "id": "q5",
+      "type": "bug",
+      "prompt": "This crashes with IndexError. Which line?",
+      "code": "cards = [\"4421\", \"9012\", \"3381\"]\nprint(cards[0])\nprint(cards[3])",
+      "answer": 3,
+      "explanation": "There are 3 items at positions 0, 1 and 2. Position 3 doesn't exist."
+    }
+  ]
+}

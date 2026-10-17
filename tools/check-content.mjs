@@ -39,7 +39,7 @@ function checkMarkdown(file, md) {
       }
     }
     if (kind === "terminal" && !existsSync(`content/terminal/${body.trim()}.json`)) errors.push(`${file}: terminal scenario ${body.trim()} not found`);
-    if (["sql", "api", "video", "download"].includes(kind)) {
+    if (["sql-lab", "api", "video", "download"].includes(kind)) {
       try {
         JSON.parse(body);
       } catch (e) {

@@ -1,0 +1,38 @@
+{
+  "id": "p1-10-project",
+  "title": "Quick check: the statement project",
+  "questions": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "prompt": "Approved payments of 1000p and 250p, an approved refund of 300p and a declined payment of 5000p. What's the total?",
+      "options": ["950p", "5950p", "1250p", "1550p"],
+      "answer": 0,
+      "explanation": "1000 + 250 − 300 = 950. The declined payment never moved any money."
+    },
+    {
+      "id": "q2",
+      "type": "mcq",
+      "prompt": "Why should `format_pounds(1250)` return `\"£12.50\"` (text) rather than `12.5` (a number)?",
+      "options": ["It's for showing to people, who expect two decimal places and a £ sign", "Numbers can't be returned from functions", "Text is more accurate", "Python requires it"],
+      "answer": 0,
+      "explanation": "Keep money as whole pence for maths; only turn it into formatted text at the very end, for display."
+    },
+    {
+      "id": "q3",
+      "type": "fill",
+      "prompt": "Which keyword skips straight to the next item in a loop?",
+      "answer": ["continue"],
+      "caseSensitive": true,
+      "explanation": "`continue` jumps to the next time round the loop. Handy for \"ignore declined transactions\"."
+    },
+    {
+      "id": "q4",
+      "type": "mcq",
+      "prompt": "Which is an **edge case** worth testing for a statement total?",
+      "options": ["An empty list of transactions", "A list with three normal payments", "Running it on a Tuesday", "Using a longer variable name"],
+      "answer": 0,
+      "explanation": "Edge cases are unusual-but-possible inputs: empty lists, zero, negatives, only-declined statements."
+    }
+  ]
+}

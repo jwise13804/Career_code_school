@@ -151,7 +151,7 @@ export const WIDGETS = {
   ci: "sections",
   dispute: "sections",
   handler: "sections",
-  sql: "json",
+  "sql-lab": "json",
   api: "json",
   video: "json",
   quiz: "id",

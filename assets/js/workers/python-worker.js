@@ -152,11 +152,15 @@ def _make_checks(ns, tee, results, code):
                 shown = shown[:200] + "..."
             record(False, f"Your output was: {shown}  We expected to see: {expected!s}", tip)
 
+    def check_no_output(unwanted, tip=None):
+        ok = str(unwanted) not in tee.text()
+        record(ok, f"Your output doesn't include: {unwanted}" if ok else f"Your output includes {unwanted}, but it shouldn't.", tip)
+
     def check_defined(name, tip=None):
         ok = name in ns
         record(ok, f"{name} exists" if ok else f"We couldn't find {name}. Check the spelling, and that you didn't delete it.", tip)
 
-    return {"check": check, "check_true": check_true, "check_output": check_output, "check_defined": check_defined, "record": record}
+    return {"check": check, "check_true": check_true, "check_output": check_output, "check_no_output": check_no_output, "check_defined": check_defined, "record": record}
 
 def _no_input(prompt=""):
     raise RuntimeError("input() can't ask questions here. Set the value directly instead, e.g. name = \"Sam\".")

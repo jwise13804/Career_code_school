@@ -1,0 +1,61 @@
+{
+  "id": "p1-02-variables",
+  "title": "Quick check: variables",
+  "questions": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "prompt": "What does `balance = 300` do?",
+      "options": ["Stores 300 under the name balance", "Checks whether balance is 300", "Prints 300", "Adds 300 to balance"],
+      "answer": 0,
+      "explanation": "A single `=` stores a value. Checking whether two things are equal uses `==`, which you'll meet in the if/else lesson."
+    },
+    {
+      "id": "q2",
+      "type": "mcq",
+      "prompt": "What does this print?\n\n```python\nbalance = 100\nbalance = balance - 30\nprint(balance)\n```",
+      "options": ["70", "100", "balance - 30", "130"],
+      "answer": 0,
+      "explanation": "Python works out `balance - 30` (that's 70) and stores it back in `balance`."
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "prompt": "Which is a good variable name?",
+      "options": ["`card_status`", "`card status`", "`2nd_card`", "`x`"],
+      "answer": 0,
+      "why": [null, "Spaces aren't allowed in names.", "Names can't start with a number.", "It's allowed, but it tells the next person nothing."],
+      "explanation": "Lowercase words joined by underscores, and a name that explains itself."
+    },
+    {
+      "id": "q4",
+      "type": "bug",
+      "prompt": "This should print *Hi Sam, your card is frozen.* but prints *Hi {name}, your card is frozen.* Which line has the bug?",
+      "code": "name = \"Sam\"\nstatus = \"frozen\"\nprint(\"Hi {name}, your card is {status}.\")",
+      "answer": 3,
+      "explanation": "Line 3 is missing the `f` before the opening quote. Without it, Python doesn't fill in the curly brackets."
+    },
+    {
+      "id": "q5",
+      "type": "fill",
+      "prompt": "Fill in the blank so this prints *Card ending 4421*.",
+      "code": "last4 = \"4421\"\nprint(_\"Card ending {last4}\")",
+      "answer": ["f"],
+      "caseSensitive": true,
+      "explanation": "An `f` right before the quote turns it into an f-string."
+    },
+    {
+      "id": "q6",
+      "type": "mcq",
+      "prompt": "Why store a card's last four digits as text (`\"0042\"`) rather than a number (`42`)?",
+      "options": [
+        "It's an identifier, not an amount. You never do maths with it, and leading zeros matter",
+        "Numbers can't have four digits",
+        "Text is faster",
+        "Python doesn't allow numbers in variables"
+      ],
+      "answer": 0,
+      "explanation": "As a number, `0042` would become `42` and lose its zeros. Card numbers, sort codes and phone numbers are labels, so store them as text."
+    }
+  ]
+}

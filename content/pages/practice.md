@@ -26,7 +26,7 @@ print(f"Statement total: £{total:.2f}")
 
 The same sample bank database the SQL lessons use: customers, cards, transactions and disputes. Press **Ctrl+Enter** (or **Cmd+Enter** on a Mac) to run a query.
 
-```sql
+```sql-lab
 {
   "id": "bench-sql",
   "title": "Explore the bank database",

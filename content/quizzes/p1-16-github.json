@@ -1,0 +1,37 @@
+{
+  "id": "p1-16-github",
+  "title": "Quick check: GitHub",
+  "questions": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "prompt": "What's the difference between Git and GitHub?",
+      "options": ["Git records history on your computer; GitHub is a website that stores repositories online", "They're the same thing", "GitHub is a newer version of Git", "Git is for Python and GitHub is for everything else"],
+      "answer": 0,
+      "explanation": "Git is the tool. GitHub is one popular place to keep and share Git repositories."
+    },
+    {
+      "id": "q2",
+      "type": "mcq",
+      "prompt": "Why make a branch instead of editing `main` directly?",
+      "options": ["So you can work safely without changing the official version until your change is reviewed", "Branches run faster", "main can't be edited", "GitHub charges for main"],
+      "answer": 0,
+      "explanation": "Branches are safe drafts. `main` only changes when a reviewed pull request is merged."
+    },
+    {
+      "id": "q3",
+      "type": "match",
+      "prompt": "Match each command or idea to its meaning.",
+      "pairs": [["git push", "Send your commits up to GitHub"], ["git pull", "Bring others' commits down to you"], ["pull request", "Ask for your branch to be reviewed and merged"], ["origin", "Nickname for your repository on GitHub"]],
+      "explanation": "Push up, pull down, PR for review."
+    },
+    {
+      "id": "q4",
+      "type": "fill",
+      "prompt": "Create and switch to a new branch called `fix-fees`: `git switch __ fix-fees`",
+      "answer": ["-c"],
+      "caseSensitive": true,
+      "explanation": "`-c` means *create*. Older guides use `git checkout -b fix-fees`, which does the same thing."
+    }
+  ]
+}

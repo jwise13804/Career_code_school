@@ -1,0 +1,43 @@
+{
+  "id": "p1-11-sql",
+  "title": "Quick check: SELECT",
+  "questions": [
+    {
+      "id": "q1",
+      "type": "match",
+      "prompt": "Match the database word to its meaning.",
+      "pairs": [["table", "A set of records of one kind, like customers"], ["row", "One record, like one customer"], ["column", "One field, like city"], ["query", "A question you ask the database"]],
+      "explanation": "Tables hold rows, and rows have a value for each column."
+    },
+    {
+      "id": "q2",
+      "type": "mcq",
+      "prompt": "What does `SELECT * FROM cards;` return?",
+      "options": ["Every column of every card", "Only the first card", "The number of cards", "Every table in the database"],
+      "answer": 0,
+      "explanation": "`*` means all columns. With no WHERE or LIMIT, you get every row."
+    },
+    {
+      "id": "q3",
+      "type": "fill",
+      "prompt": "Complete the query to show only names: `SELECT ____ FROM customers;`",
+      "answer": ["name"],
+      "explanation": "List the columns you want after SELECT."
+    },
+    {
+      "id": "q4",
+      "type": "order",
+      "prompt": "Put the parts of this query in the right order.",
+      "items": ["SELECT name, city", "FROM customers", "LIMIT 3;"],
+      "explanation": "SELECT (which columns), FROM (which table), then LIMIT (how many rows)."
+    },
+    {
+      "id": "q5",
+      "type": "bug",
+      "prompt": "This query gives a syntax error. Which line?",
+      "code": "SELECT name,\n       city,\nFROM customers;",
+      "answer": 2,
+      "explanation": "Line 2 has a comma after the **last** column. SQL then expects another column name and finds `FROM` instead."
+    }
+  ]
+}

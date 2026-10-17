@@ -1,0 +1,37 @@
+{
+  "id": "p1-14-sql",
+  "title": "Quick check: GROUP BY",
+  "questions": [
+    {
+      "id": "q1",
+      "type": "match",
+      "prompt": "Match each function to what it gives you.",
+      "pairs": [["`COUNT(*)`", "How many rows"], ["`SUM(amount)`", "The total"], ["`AVG(amount)`", "The average"], ["`MAX(amount)`", "The biggest value"]],
+      "explanation": "These are aggregate functions: many rows in, one answer out."
+    },
+    {
+      "id": "q2",
+      "type": "mcq",
+      "prompt": "What does `SELECT merchant, COUNT(*) FROM transactions GROUP BY merchant;` show?",
+      "options": ["Each merchant once, with how many transactions it has", "Every transaction with a count of 1", "The total number of merchants", "Only the busiest merchant"],
+      "answer": 0,
+      "explanation": "GROUP BY makes one pile per merchant; COUNT(*) counts each pile."
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "prompt": "To keep only merchants with more than 5 transactions, which do you add **after** GROUP BY?",
+      "options": ["`HAVING COUNT(*) > 5`", "`WHERE COUNT(*) > 5`", "`LIMIT 5`", "`ORDER BY 5`"],
+      "answer": 0,
+      "why": [null, "WHERE runs before grouping, so the counts don't exist yet.", "LIMIT just cuts the number of rows shown.", "That sorts by the fifth column."],
+      "explanation": "WHERE filters rows before grouping; HAVING filters groups after."
+    },
+    {
+      "id": "q4",
+      "type": "order",
+      "prompt": "Put these clauses in the order SQL needs.",
+      "items": ["SELECT", "FROM", "WHERE", "GROUP BY", "HAVING", "ORDER BY"],
+      "explanation": "A handy way to remember it: SELECT … FROM … WHERE … GROUP BY … HAVING … ORDER BY."
+    }
+  ]
+}

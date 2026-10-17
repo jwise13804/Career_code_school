@@ -1,0 +1,50 @@
+{
+  "id": "p1-09-errors",
+  "title": "Quick check: errors",
+  "questions": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "prompt": "Where should you start reading a Python traceback?",
+      "options": ["The last line", "The first line", "The middle", "Wherever the word Error appears first"],
+      "answer": 0,
+      "explanation": "The last line names the error and describes it. The lines just above show where it happened."
+    },
+    {
+      "id": "q2",
+      "type": "match",
+      "prompt": "Match each error to its most likely cause.",
+      "pairs": [
+        ["SyntaxError", "A missing colon, bracket or quote"],
+        ["NameError", "A misspelt variable or function name"],
+        ["TypeError", "Adding text and a number together"],
+        ["KeyError", "A dictionary key that doesn't exist"],
+        ["IndexError", "A list position that doesn't exist"]
+      ],
+      "explanation": "These five cover most beginner errors."
+    },
+    {
+      "id": "q3",
+      "type": "bug",
+      "prompt": "Python says `NameError: name 'balence' is not defined`. Which line has the bug?",
+      "code": "balance = 120\npayment = 20\nnew_balance = balence - payment\nprint(new_balance)",
+      "answer": 3,
+      "explanation": "Line 3 spells it `balence`. Python only knows `balance`."
+    },
+    {
+      "id": "q4",
+      "type": "mcq",
+      "prompt": "You fixed an error and now a *different* error appears further down. What does that mean?",
+      "options": ["Progress: Python stops at the first problem, so you've moved past one", "You made things worse", "Python is broken", "You should undo your fix"],
+      "answer": 0,
+      "explanation": "Errors show up one at a time. A new error further down usually means the first fix worked."
+    },
+    {
+      "id": "q5",
+      "type": "order",
+      "prompt": "Put the calm debugging routine in order.",
+      "items": ["Read the last line of the error", "Find the line number", "Look at that line and the one above", "Change one thing", "Run again"],
+      "explanation": "One change at a time, so you always know what fixed it."
+    }
+  ]
+}

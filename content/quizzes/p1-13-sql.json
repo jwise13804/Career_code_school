@@ -1,0 +1,36 @@
+{
+  "id": "p1-13-sql",
+  "title": "Quick check: JOIN",
+  "questions": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "prompt": "Why does the `cards` table store `customer_id` instead of the customer's name?",
+      "options": ["So each fact is stored once, and a name change only needs updating in one place", "Names take too much space", "Databases can't store names", "It's more secure"],
+      "answer": 0,
+      "explanation": "Store facts once and point to them with IDs. That keeps data consistent."
+    },
+    {
+      "id": "q2",
+      "type": "match",
+      "prompt": "Match each term to its meaning.",
+      "pairs": [["primary key", "A row's own unique id"], ["foreign key", "A column holding another table's id"], ["JOIN … ON", "Combines rows from two tables where the ids match"]],
+      "explanation": "`cards.customer_id` (foreign key) points at `customers.id` (primary key)."
+    },
+    {
+      "id": "q3",
+      "type": "fill",
+      "prompt": "Complete the join condition: `JOIN customers ON cards.customer_id = customers.__`",
+      "answer": ["id"],
+      "explanation": "The card's `customer_id` matches the customer's `id`."
+    },
+    {
+      "id": "q4",
+      "type": "mcq",
+      "prompt": "You get `ambiguous column name: id`. What does that mean?",
+      "options": ["Both joined tables have an `id` column, so say which one, e.g. `cards.id`", "The id column is missing", "You need more JOINs", "The database is broken"],
+      "answer": 0,
+      "explanation": "When two tables share a column name, prefix it with the table name."
+    }
+  ]
+}

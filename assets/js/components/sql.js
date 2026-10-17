@@ -1,7 +1,7 @@
 // SQL playground over the sample card-transactions database (sql.js = SQLite
 // compiled to WebAssembly, ~650 KB, loaded the first time it's needed).
 //
-// Config (```sql block, JSON):
+// Config (```sql-lab block, JSON):
 // { "id": "...", "title": "...", "starter": "SELECT ...",
 //   "challenges": [{ "id", "prompt", "solution", "ordered": false, "hint" }] }
 import { h, announce, loadScript, vendorUrl } from "../core/dom.js";

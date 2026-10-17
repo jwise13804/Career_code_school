@@ -1,0 +1,37 @@
+{
+  "id": "p1-12-sql",
+  "title": "Quick check: WHERE and ORDER BY",
+  "questions": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "prompt": "Which query finds active cards?",
+      "options": ["`SELECT * FROM cards WHERE status = 'active';`", "`SELECT * FROM cards WHERE status = active;`", "`SELECT active FROM cards;`", "`SELECT * FROM cards ORDER BY active;`"],
+      "answer": 0,
+      "why": [null, "Without quotes, SQL thinks `active` is a column name.", "That would look for a column called active.", "ORDER BY sorts. It doesn't filter."],
+      "explanation": "Text values need single quotes in SQL."
+    },
+    {
+      "id": "q2",
+      "type": "mcq",
+      "prompt": "How do you sort transactions so the **biggest amount comes first**?",
+      "options": ["`ORDER BY amount DESC`", "`ORDER BY amount`", "`SORT amount BIGGEST`", "`WHERE amount DESC`"],
+      "answer": 0,
+      "explanation": "`DESC` = descending (biggest first). The default, `ASC`, is smallest first."
+    },
+    {
+      "id": "q3",
+      "type": "order",
+      "prompt": "Put these parts of a \"top 3 approved\" query in the correct order.",
+      "items": ["SELECT merchant, amount", "FROM transactions", "WHERE status = 'approved'", "ORDER BY amount DESC", "LIMIT 3;"],
+      "explanation": "SELECT, FROM, WHERE, ORDER BY, LIMIT. SQL is strict about this order."
+    },
+    {
+      "id": "q4",
+      "type": "fill",
+      "prompt": "Both must be true: `WHERE status = 'declined' ___ amount > 50`",
+      "answer": ["AND", "and"],
+      "explanation": "`AND` needs both conditions. `OR` would accept either."
+    }
+  ]
+}

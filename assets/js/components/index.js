@@ -7,7 +7,7 @@ import { mountVideo } from "./video.js";
 const loaders = {
   lab: () => import("./lab.js").then((m) => m.mountLab),
   quiz: () => import("./quiz.js").then((m) => m.mountQuiz),
-  sql: () => import("./sql.js").then((m) => m.mountSql),
+  "sql-lab": () => import("./sql.js").then((m) => m.mountSql),
   api: () => import("../sims/api-sim.js").then((m) => m.mountApi),
   handler: () => import("../sims/api-sim.js").then((m) => m.mountHandlerLab),
   terminal: () => import("../sims/terminal.js").then((m) => m.mountTerminal),

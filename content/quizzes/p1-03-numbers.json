@@ -1,0 +1,49 @@
+{
+  "id": "p1-03-numbers",
+  "title": "Quick check: numbers and money",
+  "questions": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "prompt": "Why do payment systems store £12.50 as `1250`?",
+      "options": [
+        "Whole numbers are exact, and decimals like 0.1 can't be stored exactly",
+        "It uses less memory",
+        "Python can't store decimals",
+        "It looks more professional"
+      ],
+      "answer": 0,
+      "explanation": "Floats carry tiny errors (`0.1 + 0.2` is `0.30000000000000004`). Whole pence never do."
+    },
+    {
+      "id": "q2",
+      "type": "fill",
+      "prompt": "What does `print(f\"£{12.5:.2f}\")` show? Type it exactly.",
+      "answer": ["£12.50"],
+      "explanation": "`:.2f` always shows two decimal places, so 12.5 becomes 12.50."
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "prompt": "What is `17 // 5`?",
+      "options": ["3", "3.4", "2", "4"],
+      "answer": 0,
+      "explanation": "`//` divides and rounds down to a whole number: 17 ÷ 5 = 3.4, rounded down to 3."
+    },
+    {
+      "id": "q4",
+      "type": "mcq",
+      "prompt": "A customer pays £4.20 and £3.15. You stored them as `420` and `315`. How should you show the total?",
+      "options": ["`f\"£{(420 + 315) / 100:.2f}\"` → £7.35", "`f\"£{420 + 315}\"` → £735", "`f\"£{4.20 + 3.15}\"`", "`f\"£{420 / 100 + 315}\"`"],
+      "answer": 0,
+      "explanation": "Add in pence first (exact), then convert to pounds only for display."
+    },
+    {
+      "id": "q5",
+      "type": "match",
+      "prompt": "Match each value to its type.",
+      "pairs": [["`350`", "int (whole number)"], ["`3.5`", "float (decimal)"], ["`\"350\"`", "string (text)"]],
+      "explanation": "Quote marks make anything text, even digits."
+    }
+  ]
+}

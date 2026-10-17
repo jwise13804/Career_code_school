@@ -1,0 +1,50 @@
+{
+  "id": "p1-06-functions",
+  "title": "Quick check: functions",
+  "questions": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "prompt": "What does this print?\n\n```python\ndef double(n):\n    return n * 2\n\nprint(double(21))\n```",
+      "options": ["42", "21", "double(21)", "None"],
+      "answer": 0,
+      "explanation": "`double(21)` runs the function with `n = 21` and returns 42, which `print` then shows."
+    },
+    {
+      "id": "q2",
+      "type": "mcq",
+      "prompt": "A function gives back `None` when you expected a number. What's the most likely cause?",
+      "options": ["It's missing a `return`", "The name is too long", "It has too many parameters", "None means the answer is zero"],
+      "answer": 0,
+      "explanation": "Without `return`, a function hands back `None` (nothing). Printing inside it doesn't count as returning."
+    },
+    {
+      "id": "q3",
+      "type": "match",
+      "prompt": "Match each word to its meaning.",
+      "pairs": [
+        ["`def`", "Starts a function definition"],
+        ["parameter", "A named input in the definition"],
+        ["argument", "The actual value passed in when calling"],
+        ["`return`", "Hands a value back to the caller"]
+      ],
+      "explanation": "In `def fee(amount)`, `amount` is the parameter. In `fee(100)`, `100` is the argument."
+    },
+    {
+      "id": "q4",
+      "type": "bug",
+      "prompt": "`total = 100 + vat(100)` crashes with a TypeError. Which line in `vat` is the problem?",
+      "code": "def vat(amount):\n    result = amount * 0.2\n    print(result)",
+      "answer": 3,
+      "explanation": "Line 3 prints instead of returning, so `vat(100)` gives back `None`, and you can't add `100 + None`."
+    },
+    {
+      "id": "q5",
+      "type": "fill",
+      "prompt": "Complete the first line of a function called `refund` that takes one input called `amount`: `___ refund(amount):`",
+      "answer": ["def"],
+      "caseSensitive": true,
+      "explanation": "`def name(parameters):`, with a colon at the end and the body indented below."
+    }
+  ]
+}

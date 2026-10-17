@@ -1,0 +1,44 @@
+{
+  "id": "p1-15-git",
+  "title": "Quick check: Git",
+  "questions": [
+    {
+      "id": "q1",
+      "type": "order",
+      "prompt": "Put the everyday Git loop in order.",
+      "items": ["Change a file", "git status", "git add totals.py", "git commit -m \"Describe the change\""],
+      "explanation": "Change → check → stage → commit. You'll do this many times a day."
+    },
+    {
+      "id": "q2",
+      "type": "match",
+      "prompt": "Match the Git word to its case-history equivalent.",
+      "pairs": [["repository", "The case file"], ["commit", "A case note saying what changed and why"], ["git log", "The full case history"], ["staging", "Choosing what to attach before saving the note"]],
+      "explanation": "Git is a history of your project, one note (commit) at a time."
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "prompt": "Which is the best commit message?",
+      "options": ["`Ignore declined transactions in statement total`", "`fix`", "`changes`", "`asdf`"],
+      "answer": 0,
+      "explanation": "Say what the change does, so anyone reading the history understands it."
+    },
+    {
+      "id": "q4",
+      "type": "mcq",
+      "prompt": "You type `git commit -m \"Add totals\"` and Git says *nothing added to commit*. What did you forget?",
+      "options": ["`git add` to stage the file first", "`git init`", "`git push`", "To save the file in Python"],
+      "answer": 0,
+      "explanation": "Commit only saves what's been staged with `git add`."
+    },
+    {
+      "id": "q5",
+      "type": "fill",
+      "prompt": "Which command shows what's changed since the last commit? `git ______`",
+      "answer": ["status"],
+      "caseSensitive": true,
+      "explanation": "`git status` is your best friend. Run it whenever you're unsure."
+    }
+  ]
+}

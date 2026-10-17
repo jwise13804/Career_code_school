@@ -1,0 +1,46 @@
+{
+  "id": "p1-05-loops",
+  "title": "Quick check: loops",
+  "questions": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "prompt": "How many times does the indented line run?\n\n```python\nfor amount in [5, 10, 15, 20]:\n    print(amount)\n```",
+      "options": ["4", "1", "20", "Forever"],
+      "answer": 0,
+      "explanation": "Once per item in the list, and there are 4 items."
+    },
+    {
+      "id": "q2",
+      "type": "mcq",
+      "prompt": "What does this print?\n\n```python\ntotal = 0\nfor amount in [10, 20, 30]:\n    total = total + amount\nprint(total)\n```",
+      "options": ["60", "30", "0", "10 20 30"],
+      "answer": 0,
+      "explanation": "The total grows 0 → 10 → 30 → 60. The print is outside the loop (not indented), so it runs once at the end."
+    },
+    {
+      "id": "q3",
+      "type": "bug",
+      "prompt": "This should print the total once, but it prints a running total three times. Which line is wrong?",
+      "code": "total = 0\nfor amount in [10, 20, 30]:\n    total = total + amount\n    print(total)",
+      "answer": 4,
+      "explanation": "Line 4 is indented, so it's inside the loop and runs every time. Remove the indent to run it once, after the loop."
+    },
+    {
+      "id": "q4",
+      "type": "bug",
+      "prompt": "This loop never ends. Which line causes it?",
+      "code": "balance = 100\nwhile balance > 0:\n    print(balance)\n    balance = balance + 30",
+      "answer": 4,
+      "explanation": "Line 4 *adds* 30, so the balance only grows and `balance > 0` stays true forever. It should subtract."
+    },
+    {
+      "id": "q5",
+      "type": "fill",
+      "prompt": "Complete the loop: `____ amount in amounts:`",
+      "answer": ["for"],
+      "caseSensitive": true,
+      "explanation": "`for item in list:` is the pattern you'll write more than any other."
+    }
+  ]
+}

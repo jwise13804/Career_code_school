@@ -1,0 +1,45 @@
+{
+  "id": "p1-08-dicts",
+  "title": "Quick check: dictionaries",
+  "questions": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "prompt": "`card = {\"last4\": \"4421\", \"status\": \"active\"}`. How do you get the status?",
+      "options": ["`card[\"status\"]`", "`card[1]`", "`card.status`", "`card(\"status\")`"],
+      "answer": 0,
+      "why": [null, "Dictionaries are looked up by key, not position.", "That works in some languages, but not for Python dicts.", "Round brackets would try to *call* it like a function."],
+      "explanation": "Square brackets with the key in quotes."
+    },
+    {
+      "id": "q2",
+      "type": "mcq",
+      "prompt": "What happens with `customer[\"email\"]` if the dict has no `\"email\"` key?",
+      "options": ["KeyError", "It returns None", "It returns an empty string", "It adds the key"],
+      "answer": 0,
+      "explanation": "A missing key raises **KeyError**. Use `customer.get(\"email\")` if it might be missing."
+    },
+    {
+      "id": "q3",
+      "type": "fill",
+      "prompt": "Block the card: `card[\"status\"] = ________` (type the value with its quotes)",
+      "answer": ["\"blocked\"", "'blocked'"],
+      "explanation": "Assigning to an existing key replaces its value."
+    },
+    {
+      "id": "q4",
+      "type": "bug",
+      "prompt": "This gives a KeyError. Which line?",
+      "code": "customer = {\"name\": \"Tom\", \"card_status\": \"blocked\"}\nif customer[\"Card_status\"] == \"blocked\":\n    print(\"Blocked\")",
+      "answer": 2,
+      "explanation": "Keys are case-sensitive: `\"Card_status\"` isn't the same key as `\"card_status\"`."
+    },
+    {
+      "id": "q5",
+      "type": "match",
+      "prompt": "Match the Python idea to its support-desk equivalent.",
+      "pairs": [["dictionary", "One customer record"], ["key", "A field label, like Name"], ["value", "What's filled in next to the label"], ["list of dictionaries", "A table of customers"]],
+      "explanation": "Records and tables: you'll see the same shapes in SQL next."
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "id": "p1-04-if-else",
+  "title": "Quick check: decisions",
+  "questions": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "prompt": "What does this print?\n\n```python\nbalance = 40\namount = 40\nif amount > balance:\n    print(\"Declined\")\nelse:\n    print(\"Approved\")\n```",
+      "options": ["Approved", "Declined", "Both", "Nothing"],
+      "answer": 0,
+      "explanation": "40 is not *more than* 40, so the `else` branch runs."
+    },
+    {
+      "id": "q2",
+      "type": "bug",
+      "prompt": "Which line will stop this code from running?",
+      "code": "card_status = \"active\"\nif card_status = \"active\":\n    print(\"Card is active\")",
+      "answer": 2,
+      "explanation": "Line 2 uses `=` (store) where it needs `==` (compare). Python gives a SyntaxError."
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "prompt": "A card is blocked **and** the amount is more than the balance. With the checks in this order, which message is returned?\n\n```python\nif amount > balance:\n    return \"Declined: insufficient funds\"\nelif card_status == \"blocked\":\n    return \"Declined: card blocked\"\n```",
+      "options": ["Declined: insufficient funds", "Declined: card blocked", "Both messages", "An error"],
+      "answer": 0,
+      "explanation": "Python stops at the first true condition. Here that's the funds check, which is probably not what you want, because the customer should be told about the block."
+    },
+    {
+      "id": "q4",
+      "type": "fill",
+      "prompt": "Fill in the word so *both* conditions must be true: `if card_status == \"active\" ___ amount <= balance:`",
+      "answer": ["and"],
+      "caseSensitive": true,
+      "explanation": "`and` needs both to be true. `or` would need only one."
+    },
+    {
+      "id": "q5",
+      "type": "bug",
+      "prompt": "Which line has an indentation problem?",
+      "code": "if amount <= balance:\nprint(\"Approved\")\nelse:\n    print(\"Declined\")",
+      "answer": 2,
+      "explanation": "Line 2 belongs inside the `if`, so it must be indented by 4 spaces. Python would say *IndentationError: expected an indented block*."
+    },
+    {
+      "id": "q6",
+      "type": "match",
+      "prompt": "Match each comparison to its meaning.",
+      "pairs": [["`==`", "is equal to"], ["`!=`", "is not equal to"], ["`>=`", "is at least"], ["`<`", "is less than"]],
+      "explanation": "These all give back True or False."
+    }
+  ]
+}
