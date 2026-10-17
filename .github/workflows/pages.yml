@@ -30,6 +30,8 @@ jobs:
           node-version: 22
       - name: Check lesson content
         run: node tools/check-content.mjs
+      - name: Check every lab solution passes and every SQL answer runs
+        run: python3 tools/verify-labs.py
       - name: Collect published files
         run: |
           mkdir _site

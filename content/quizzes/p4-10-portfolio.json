@@ -1,0 +1,42 @@
+{
+  "id": "p4-10-portfolio",
+  "title": "Quick check: portfolio",
+  "questions": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "prompt": "Which GitHub profile is most likely to impress for a junior backend role?",
+      "options": [
+        "One finished payments API with tests, CI and a clear README",
+        "Fifteen tutorial copies with no READMEs",
+        "One huge repo with a single commit called \"final\"",
+        "An empty profile with a great photo"
+      ],
+      "answer": 0,
+      "explanation": "Finished, tested and explained beats lots of half-done work."
+    },
+    {
+      "id": "q2",
+      "type": "mcq",
+      "prompt": "What's the most valuable thing to include in your README's \"design decisions\"?",
+      "options": ["Why you made each choice, e.g. why amounts are in pence", "A list of every file", "Your favourite colour", "The full text of PCI DSS"],
+      "answer": 0,
+      "explanation": "Explaining *why* shows understanding, which is exactly what interviewers probe."
+    },
+    {
+      "id": "q3",
+      "type": "order",
+      "prompt": "Put the terminal steps for publishing a new project in order.",
+      "items": ["git init", "git add .", "git commit -m \"Initial commit\"", "git remote add origin https://github.com/you/card-payments-api.git", "git push -u origin main"],
+      "explanation": "Create the repo locally, stage, commit, connect to GitHub, push."
+    },
+    {
+      "id": "q4",
+      "type": "mcq",
+      "prompt": "You don't understand part of the starter code. What should you do before an interview?",
+      "options": ["Learn it until you can explain it, or replace it with something you can", "Leave it and hope they don't ask", "Delete the whole project", "Say a friend wrote it"],
+      "answer": 0,
+      "explanation": "Interviewers often pick a line and ask why it's there. Own every line."
+    }
+  ]
+}

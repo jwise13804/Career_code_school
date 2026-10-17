@@ -1,0 +1,56 @@
+{
+  "id": "p4-01-payments",
+  "title": "Quick check: how a card payment flows",
+  "questions": [
+    {
+      "id": "q1",
+      "type": "order",
+      "prompt": "Drag the steps of a card payment into the right order.",
+      "items": [
+        "Customer taps the card on the terminal",
+        "Terminal sends the request to the acquirer",
+        "The card scheme routes it to the issuer",
+        "Issuer checks funds and fraud, then approves",
+        "Approval travels back and the terminal beeps",
+        "Transactions are cleared in an end-of-day batch",
+        "Money is settled to the merchant, minus fees"
+      ],
+      "explanation": "Authorisation (seconds), then clearing (usually the same day), then settlement (often 1 to 2 working days)."
+    },
+    {
+      "id": "q2",
+      "type": "match",
+      "prompt": "Match each party to its role.",
+      "pairs": [
+        ["Issuer", "The cardholder's bank, which approves or declines"],
+        ["Acquirer", "The merchant's bank or payment provider"],
+        ["Card scheme", "The network that routes payments and sets the rules"],
+        ["Merchant", "The business taking the payment"]
+      ],
+      "explanation": "Issuer = customer's side, acquirer = merchant's side, scheme = the network in between."
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "prompt": "A customer asks why a payment shows as **pending**. Which step has happened so far?",
+      "options": ["Authorisation: the money is held, but not yet cleared and settled", "Settlement", "A chargeback", "Nothing: pending means it failed"],
+      "answer": 0,
+      "explanation": "Pending usually means authorised but not yet cleared. The hold disappears or becomes a posted transaction later."
+    },
+    {
+      "id": "q4",
+      "type": "mcq",
+      "prompt": "Who receives **interchange** fees?",
+      "options": ["The issuer", "The merchant", "The cardholder", "The terminal manufacturer"],
+      "answer": 0,
+      "explanation": "Interchange goes to the issuer. In the UK it's capped for most consumer cards."
+    },
+    {
+      "id": "q5",
+      "type": "fill",
+      "prompt": "When a cardholder disputes a payment through their bank under the scheme rules, it's called a ________.",
+      "answer": ["chargeback", "charge back", "charge-back"],
+      "explanation": "Chargebacks follow scheme rules and strict deadlines. You modelled one as a state machine in the dispute lesson."
+    }
+  ]
+}

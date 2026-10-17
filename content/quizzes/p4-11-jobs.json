@@ -1,0 +1,47 @@
+{
+  "id": "p4-11-jobs",
+  "title": "Quick check: interview ready",
+  "questions": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "prompt": "An interviewer asks: *\"The client times out and retries a payment. What happens in your API?\"* Best answer?",
+      "options": [
+        "The retry carries the same Idempotency-Key, so my API returns the original result without charging again",
+        "The customer gets charged twice but we refund them",
+        "Clients never time out",
+        "I'd ask the customer not to press the button twice"
+      ],
+      "answer": 0,
+      "explanation": "That's the idempotency story, and you can explain why it matters from real customer experience."
+    },
+    {
+      "id": "q2",
+      "type": "match",
+      "prompt": "Match each STAR step to its meaning.",
+      "pairs": [["Situation", "The background: where and when"], ["Task", "What you needed to achieve"], ["Action", "What *you* did"], ["Result", "The outcome, with numbers if you can"]],
+      "explanation": "STAR keeps behavioural answers clear and focused on what you did."
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "prompt": "Which CV line best translates support experience for a backend role?",
+      "options": [
+        "Resolved 40+ card dispute cases a week across the chargeback lifecycle",
+        "Answered phones",
+        "Good with customers",
+        "Worked in a call centre"
+      ],
+      "answer": 0,
+      "explanation": "Specific, measurable and clearly connected to the domain the employer works in."
+    },
+    {
+      "id": "q4",
+      "type": "mcq",
+      "prompt": "You're asked something in an interview you don't know. What's the best response?",
+      "options": ["Say you don't know, then explain how you'd find out or reason about it", "Make up an answer confidently", "Change the subject", "End the interview"],
+      "answer": 0,
+      "explanation": "Honesty plus a clear approach is exactly what teams want from a junior."
+    }
+  ]
+}

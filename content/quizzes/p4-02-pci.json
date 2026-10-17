@@ -1,0 +1,50 @@
+{
+  "id": "p4-02-pci",
+  "title": "Quick check: PCI DSS",
+  "questions": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "prompt": "Which of these must **never** be stored after a payment is authorised, even encrypted?",
+      "options": ["The CVV/CVC security code", "The last four digits", "The expiry date", "The cardholder's name"],
+      "answer": 0,
+      "explanation": "Sensitive authentication data (CVV/CVC, PIN, full chip or stripe data) must not be kept after authorisation."
+    },
+    {
+      "id": "q2",
+      "type": "bug",
+      "prompt": "Which line breaks a PCI DSS rule?",
+      "code": "def take_payment(card_number, amount):\n    token = vault.tokenise(card_number)\n    log.info(f\"Charging {card_number} for {amount}\")\n    return charge(token, amount)",
+      "answer": 3,
+      "explanation": "Line 3 writes the full card number to the logs. Log the token or the last four digits instead."
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "prompt": "What's the safest way for a small online shop to handle card numbers?",
+      "options": [
+        "Use the payment provider's hosted fields, so card numbers never touch the shop's servers",
+        "Store them in a spreadsheet with a password",
+        "Email them to the finance team",
+        "Store them encrypted next to the CVV"
+      ],
+      "answer": 0,
+      "explanation": "Card data you never hold can't leak, and far fewer PCI requirements apply."
+    },
+    {
+      "id": "q4",
+      "type": "match",
+      "prompt": "Match each term to its meaning.",
+      "pairs": [["PAN", "The long card number"], ["Token", "A stand-in value that's useless if stolen"], ["Masking", "Showing only part of the number, e.g. ************4242"], ["PCI SSC", "The council that runs the standard"]],
+      "explanation": "Tokens and masking let systems work with cards without exposing the real number."
+    },
+    {
+      "id": "q5",
+      "type": "fill",
+      "prompt": "Give the Python slice that returns the last four characters of `pan`: `pan[____]`",
+      "answer": ["-4:"],
+      "caseSensitive": true,
+      "explanation": "`pan[-4:]` means \"from 4 from the end, to the end\"."
+    }
+  ]
+}

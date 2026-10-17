@@ -1,0 +1,42 @@
+{
+  "id": "p4-03-sca",
+  "title": "Quick check: PSD2 and SCA",
+  "questions": [
+    {
+      "id": "q1",
+      "type": "match",
+      "prompt": "Match each authentication example to its factor type.",
+      "pairs": [["PIN", "Knowledge (something you know)"], ["Your phone", "Possession (something you have)"], ["Fingerprint", "Inherence (something you are)"]],
+      "explanation": "SCA needs two of the three different types."
+    },
+    {
+      "id": "q2",
+      "type": "mcq",
+      "prompt": "A customer approves an online payment in their banking app using Face ID. Which two factors is that?",
+      "options": ["Possession (phone) and inherence (face)", "Knowledge and possession", "Knowledge and inherence", "Only one factor"],
+      "answer": 0,
+      "explanation": "The phone is something they have; their face is something they are."
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "prompt": "In the UK, which law brought PSD2's rules into force?",
+      "options": ["The Payment Services Regulations 2017", "The Data Protection Act", "The Consumer Credit Act", "None. PSD2 doesn't apply in the UK"],
+      "answer": 0,
+      "explanation": "The UK's Payment Services Regulations 2017 implemented PSD2, and the FCA enforces them."
+    },
+    {
+      "id": "q4",
+      "type": "mcq",
+      "prompt": "Why might a contactless payment suddenly ask for the PIN?",
+      "options": [
+        "Several contactless payments in a row triggered SCA",
+        "The card is faulty",
+        "The shop turned off contactless",
+        "PINs are needed every Tuesday"
+      ],
+      "answer": 0,
+      "explanation": "Contactless is exempt only up to certain limits. After that, a PIN (knowledge) plus the card (possession) satisfies SCA."
+    }
+  ]
+}

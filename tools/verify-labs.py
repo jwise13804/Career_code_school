@@ -8,6 +8,7 @@ assets/js/workers/python-worker.js), running in normal CPython.
 """
 import json
 import re
+import sqlite3
 import sys
 from pathlib import Path
 
@@ -89,5 +90,26 @@ for path in files:
             first_fail = next((t for t in start["tests"] if not t["ok"]), None)
             print(f"ok   {name}  (starter fails with: {first_fail['message'][:90] if first_fail else start['error']})")
 
-print(f"\n{count} labs checked, {problems} problem(s).")
+# SQL challenges: every solution must run against the sample database and return rows.
+
+bank = (ROOT / "content/data/bank.sql").read_text()
+sql_count = 0
+for path in files:
+    md = path.read_text()
+    for m in re.finditer(r"^```sql-lab\n(.*?)^```\s*$", md, re.S | re.M):
+        cfg = json.loads(m.group(1))
+        for ch in cfg.get("challenges", []):
+            sql_count += 1
+            db = sqlite3.connect(":memory:")
+            db.executescript(bank)
+            try:
+                rows = db.execute(ch["solution"]).fetchall()
+                if not rows:
+                    raise ValueError("returned no rows")
+                print(f"ok   {path.name} [sql] {cfg['id']}/{ch['id']}  ({len(rows)} rows)")
+            except Exception as err:
+                problems += 1
+                print(f"FAIL {path.name} [sql] {cfg['id']}/{ch['id']}: {err}")
+
+print(f"\n{count} labs and {sql_count} SQL challenges checked, {problems} problem(s).")
 sys.exit(1 if problems else 0)
