@@ -1,0 +1,55 @@
+{
+  "id": "p2-10-pytest",
+  "title": "Quick check: tests",
+  "questions": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "prompt": "What does `assert card_fee(5) == 0.20` do if `card_fee(5)` returns `0.08`?",
+      "options": [
+        "Stops with an AssertionError, so the test fails",
+        "Changes the result to 0.20",
+        "Prints a warning but carries on",
+        "Nothing. assert only works with text"
+      ],
+      "answer": 0,
+      "explanation": "`assert` checks a claim. If the claim is false, it raises `AssertionError`, and pytest reports that test as failed."
+    },
+    {
+      "id": "q2",
+      "type": "mcq",
+      "prompt": "Which of these will pytest run as a test?",
+      "options": ["`def test_refund_is_negative():`", "`def check_refund():`", "`def refund_test():`", "`def TestRefund():`"],
+      "answer": 0,
+      "explanation": "pytest collects functions whose names **start with** `test_`, in files whose names start with `test_`."
+    },
+    {
+      "id": "q3",
+      "type": "fill",
+      "prompt": "pytest's summary says `1 failed, 3 passed`. How many tests ran in total? Type a number.",
+      "answer": ["4", "four"],
+      "explanation": "1 + 3 = 4 tests. Read pytest output from the bottom up: the summary line comes last."
+    },
+    {
+      "id": "q4",
+      "type": "bug",
+      "prompt": "This test always passes, even when `card_fee` is broken. Which line is the problem?",
+      "code": "def test_fee_on_100_pounds():\n    fee = card_fee(100)\n    fee == 1.50",
+      "answer": 3,
+      "explanation": "Line 3 compares but never **asserts**. The comparison happens and is thrown away. It should be `assert fee == 1.50`."
+    },
+    {
+      "id": "q5",
+      "type": "mcq",
+      "prompt": "Why do teams write tests instead of just checking by hand?",
+      "options": [
+        "Tests re-check everything automatically, in seconds, every time the code changes",
+        "Tests make the code run faster",
+        "Customers can see the tests",
+        "Because managers like big numbers"
+      ],
+      "answer": 0,
+      "explanation": "Code changes constantly. Automated tests catch problems before customers do, and in Phase 3 they'll run on every push automatically."
+    }
+  ]
+}

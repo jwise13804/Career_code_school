@@ -1,0 +1,59 @@
+{
+  "id": "docker-basics",
+  "title": "Build and run a container",
+  "intro": "Your Mini Bank API code is in this folder, along with a `Dockerfile` (the recipe). Let's build the container and run it.",
+  "prompt": "~/mini-bank",
+  "welcome": "Practice terminal ready. Type help at any time.",
+  "docs": { "label": "Docker's official Get Started guide", "url": "https://docs.docker.com/get-started/" },
+  "always": [
+    { "match": "^ls$", "output": "Dockerfile  main.py  requirements.txt" },
+    { "match": "^cat Dockerfile$", "output": "FROM python:3.12-slim\nWORKDIR /app\nCOPY requirements.txt .\nRUN pip install -r requirements.txt\nCOPY . .\nCMD [\"uvicorn\", \"main:app\", \"--host\", \"0.0.0.0\", \"--port\", \"8000\"]" }
+  ],
+  "steps": [
+    {
+      "goal": "Check Docker is installed.",
+      "hint": "`docker --version`",
+      "accept": ["^docker (--version|-v|version)$"],
+      "output": "Docker version 27.3.1, build ce12230",
+      "explain": "Docker is there. On your own computer you'd install **Docker Desktop** first."
+    },
+    {
+      "goal": "Build an image from the Dockerfile and name (tag) it `mini-bank`.",
+      "hint": "`docker build -t mini-bank .`. The full stop at the end means *use this folder*.",
+      "accept": ["^docker build -t mini-bank(:latest)? \\.$", "^docker build \\. -t mini-bank(:latest)?$"],
+      "output": "[+] Building 18.2s (10/10) FINISHED\n => [1/5] FROM python:3.12-slim\n => [2/5] WORKDIR /app\n => [3/5] COPY requirements.txt .\n => [4/5] RUN pip install -r requirements.txt\n => [5/5] COPY . .\n => naming to docker.io/library/mini-bank:latest",
+      "explain": "Docker followed the recipe step by step and produced an **image**: a sealed kit with Python, your libraries and your code inside.",
+      "mistakes": [
+        { "match": "^docker build -t \\S+$", "output": "ERROR: \"docker buildx build\" requires exactly 1 argument.", "say": "You're missing the `.` at the end: it tells Docker which folder to build from." },
+        { "match": "^docker build \\.$", "output": "(builds, but the image has no name)", "say": "That builds an image with no friendly name. Add `-t mini-bank` so you can refer to it." },
+        { "match": "^docker build -t (\\S+) \\.$", "say": "That works in real life! For this exercise please use the name `mini-bank`." }
+      ]
+    },
+    {
+      "goal": "List your images to check it's there.",
+      "hint": "`docker images` (or `docker image ls`)",
+      "accept": ["^docker (images|image ls)$"],
+      "output": "REPOSITORY   TAG       IMAGE ID       CREATED          SIZE\nmini-bank    latest    5c2f1a9e8b7d   10 seconds ago   162MB",
+      "explain": "Your image is ready to run anywhere Docker runs: your laptop, a colleague's, or a cloud server."
+    },
+    {
+      "goal": "Run it, connecting port 8000 on your computer to port 8000 in the container.",
+      "hint": "`docker run -p 8000:8000 mini-bank`",
+      "accept": ["^docker run (-d )?(-p|--publish) 8000:8000 (-d )?mini-bank$"],
+      "output": "INFO:     Started server process [1]\nINFO:     Application startup complete.\nINFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)",
+      "explain": "A **container** is a running copy of the image. `-p 8000:8000` is like a phone extension: calls to 8000 on your laptop are put through to 8000 inside the container. You could now open http://localhost:8000.",
+      "mistakes": [
+        { "match": "^docker run mini-bank$", "output": "INFO:     Uvicorn running on http://0.0.0.0:8000", "say": "It's running, but sealed off: without `-p 8000:8000` nothing outside the container can reach it. Add the port mapping." },
+        { "match": "^docker run (-p|--publish) \\d+( |$)", "say": "The port needs two numbers: `outside:inside`, so `8000:8000`." }
+      ]
+    },
+    {
+      "goal": "In a second terminal, list the running containers.",
+      "hint": "`docker ps`",
+      "accept": ["^docker (ps|container ls)$"],
+      "output": "CONTAINER ID   IMAGE       COMMAND                  STATUS         PORTS\n9b1c0e2d4f5a   mini-bank   \"uvicorn main:app --…\"   Up 12 seconds  0.0.0.0:8000->8000/tcp",
+      "explain": "There it is, up and running. `docker stop 9b1c0e2d4f5a` would stop it."
+    }
+  ],
+  "finish": "**Dockerfile** (recipe) → **image** (sealed kit) → **container** (the kit running). That's Docker."
+}

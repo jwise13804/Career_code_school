@@ -1,0 +1,66 @@
+{
+  "id": "git-basics",
+  "title": "Your first commit",
+  "intro": "You've written `totals.py` (the transaction totaller). Let's save a snapshot of it with Git. Type each command and press Enter.",
+  "prompt": "~/statement-totals",
+  "welcome": "Practice terminal ready. Type help at any time.",
+  "docs": { "label": "Install Git on your own computer", "url": "https://git-scm.com/downloads" },
+  "always": [
+    { "match": "^ls( -la?)?$", "output": "totals.py" },
+    { "match": "^pwd$", "output": "/home/you/statement-totals" },
+    { "match": "^cat totals\\.py$", "output": "def total(amounts):\n    return round(sum(amounts), 2)\n\nprint(total([12.50, 3.20, 45.00]))" },
+    { "match": "^python3? totals\\.py$", "output": "60.7" }
+  ],
+  "steps": [
+    {
+      "goal": "Turn this folder into a Git repository (a folder Git keeps an eye on).",
+      "hint": "The command is `git init`. *init* is short for initialise.",
+      "accept": ["^git init( \\.)?$"],
+      "output": "Initialized empty Git repository in /home/you/statement-totals/.git/",
+      "explain": "Git made a hidden `.git` folder. That's where it keeps every snapshot from now on, like a case history attached to a customer record.",
+      "mistakes": [
+        { "match": "^git (start|begin|new|create)", "output": "git: '$1' is not a git command. See 'git --help'.", "say": "Close! Git calls this `init` (short for initialise)." },
+        { "match": "^git status$", "output": "fatal: not a git repository (or any of the parent directories): .git", "say": "Good instinct to check! But this folder isn't a repository yet, so Git has nothing to report. Run `git init` first." }
+      ]
+    },
+    {
+      "goal": "Ask Git what it can see.",
+      "hint": "`git status` tells you what's changed. You'll type it hundreds of times.",
+      "accept": ["^git status$"],
+      "output": "On branch main\n\nNo commits yet\n\nUntracked files:\n  (use \"git add <file>...\" to include in what will be committed)\n\ttotals.py\n\nnothing added to commit but untracked files present (use \"git add\" to track)",
+      "explain": "**Untracked** means Git sees the file but isn't saving it yet. Notice Git even suggests the next command.",
+      "mistakes": [{ "match": "^git stat\\w*$", "output": "git: '$0' is not a git command.", "say": "Almost: it's `git status` in full." }]
+    },
+    {
+      "goal": "Stage `totals.py`: put it in the envelope, ready to be saved.",
+      "hint": "`git add totals.py` (or `git add .` to add everything in the folder).",
+      "accept": ["^git add (totals\\.py|\\.|-A|--all)$"],
+      "output": "",
+      "explain": "No news is good news: silence means it worked. The file is now **staged**. Think of preparing a refund: you can gather several items before you press submit.",
+      "mistakes": [
+        { "match": "^git add$", "output": "Nothing specified, nothing added.", "say": "Tell Git *which* file: `git add totals.py`." },
+        { "match": "^git add (\\S+)$", "output": "fatal: pathspec '$1' did not match any files", "say": "There's no file called `$1` here. Type `ls` to see the exact file name. Spelling counts." },
+        { "match": "^git commit", "output": "nothing added to commit but untracked files present (use \"git add\" to track)", "say": "You need to **add** before you can **commit**, like putting the letter in the envelope before posting it." }
+      ]
+    },
+    {
+      "goal": "Commit (save the snapshot) with a short message saying what you did.",
+      "hint": "`git commit -m \"Add transaction totaller\"`. The `-m` means *message*, and the message goes in quotes.",
+      "accept": ["^git commit -m ([\"'])(.+)\\1$", "^git commit -am ([\"'])(.+)\\1$"],
+      "output": "[main (root-commit) 3f9c2ab] $2\n 1 file changed, 4 insertions(+)\n create mode 100644 totals.py",
+      "explain": "Saved for good. `3f9c2ab` is this snapshot's ID, like a case reference number. Good messages say *what* and *why*, so a future you can follow the history.",
+      "mistakes": [
+        { "match": "^git commit$", "output": "(an editor opens and waits for you to type a message…)", "say": "On a real computer this opens a text editor, which can be confusing at first. Add the message directly with `-m \"your message\"`." },
+        { "match": "^git commit -m [^\"'].*$", "output": "error: pathspec did not match any file(s) known to git", "say": "Wrap the message in quote marks: `git commit -m \"Add transaction totaller\"`. Without them Git thinks each word is a file name." }
+      ]
+    },
+    {
+      "goal": "Look at your history.",
+      "hint": "`git log` shows every commit. `git log --oneline` is the short version.",
+      "accept": ["^git log( --oneline)?$"],
+      "output": "3f9c2ab (HEAD -> main) Add transaction totaller",
+      "explain": "One commit so far. Every time you add and commit, a new line appears. That's your safety net: you can always go back."
+    }
+  ],
+  "finish": "You made a repository, staged a file and committed it. That's the loop you'll use every day: **change → add → commit**."
+}

@@ -1824,3 +1824,52 @@ a.term {
   font-size: 1.25rem;
   line-height: 1;
 }
+
+/* Widgets sit inside lesson prose; undo prose styles that don't belong in them. */
+.prose .output-text,
+.prose .error-source {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  color: inherit;
+  font-size: 0.95rem;
+}
+.prose .error-source {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 0.4rem 0.6rem;
+}
+.prose .api-body {
+  border: 0;
+  border-radius: 0;
+  margin: 0;
+}
+.prose .checks,
+.prose .task-list,
+.prose .request-log,
+.prose .api-history,
+.prose .order-list,
+.prose .lesson-stops {
+  padding-left: 0;
+}
+.prose .checks li,
+.prose .request-log li {
+  margin: 0;
+}
+.prose .card {
+  max-width: none;
+}
+.lesson-body {
+  max-width: none;
+}
+.lesson-body > :not(.card):not(.callout) {
+  max-width: var(--prose);
+}
+.terminal-explain p {
+  margin: 0.2rem 0;
+}
+.terminal :not(pre) > code,
+.output :not(pre) > code,
+.error-box :not(pre) > code {
+  background: rgba(255, 255, 255, 0.12);
+  color: inherit;
+}

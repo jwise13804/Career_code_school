@@ -6,13 +6,12 @@ import { runPython, stopPython } from "../core/python.js";
 import { getLab, updateLab } from "../core/storage.js";
 import { pythonStatus } from "./python-status.js";
 import { outputPanel, renderChecks } from "./run-output.js";
+import { hintLadder } from "./hints.js";
 
 export async function mountLab(slot, config, ctx) {
   const id = config.id || `${ctx.lessonId}-lab`;
   const saved = getLab(id);
   const starter = (config.starter || "") + "\n";
-  const hints = config.hints || [];
-  let hintsShown = saved.hints || 0;
   let lastError = null;
 
   const editorHost = h("div", { class: "editor-host" });
@@ -26,10 +25,16 @@ export async function mountLab(slot, config, ctx) {
   const stopBtn = h("button", { class: "btn btn-danger", type: "button", hidden: true }, h("span", { "aria-hidden": "true" }, "■ "), "Stop");
   const resetBtn = h("button", { class: "btn btn-ghost", type: "button" }, h("span", { "aria-hidden": "true" }, "↺ "), "Reset code");
 
-  const hintList = h("ol", { class: "hint-list" });
-  const hintBtn = h("button", { class: "btn btn-ghost btn-small", type: "button" });
-  const solutionBox = h("div", { class: "solution", hidden: true });
-  const solutionBtn = h("button", { class: "btn btn-ghost btn-small", type: "button", hidden: true }, "Show the solution");
+  let editor;
+  const hints = hintLadder({
+    id,
+    hints: config.hints,
+    solution: config.solution,
+    onUseSolution: (code) => {
+      editor.setValue(code + "\n");
+      editor.focus();
+    },
+  });
 
   const el = h(
     "section",
@@ -43,13 +48,11 @@ export async function mountLab(slot, config, ctx) {
     output.el,
     checks,
     success,
-    hints.length
-      ? h("div", { class: "hints" }, h("h4", { class: "hints-title" }, "Stuck? Hints, one step at a time"), hintList, h("div", { class: "toolbar" }, hintBtn, solutionBtn), solutionBox)
-      : null,
+    hints,
   );
   slot.replaceWith(el);
 
-  const editor = await createEditor(editorHost, {
+  editor = await createEditor(editorHost, {
     doc: saved.code ?? starter,
     label: `${config.title || "Code lab"} editor`,
     onChange: (code) => {
@@ -58,38 +61,6 @@ export async function mountLab(slot, config, ctx) {
       ctx.setStuck({ activity: config.title, code, error: lastError });
     },
   });
-
-  function renderHints() {
-    hintList.replaceChildren(...hints.slice(0, hintsShown).map((text, i) => h("li", { class: "prose", html: renderMarkdown(text), "aria-label": `Hint ${i + 1}` })));
-    if (hintsShown < hints.length) {
-      hintBtn.hidden = false;
-      hintBtn.textContent = `Show hint ${hintsShown + 1} of ${hints.length}`;
-    } else hintBtn.hidden = true;
-    solutionBtn.hidden = !config.solution || hintsShown < hints.length || !solutionBox.hidden;
-  }
-  hintBtn.addEventListener("click", () => {
-    hintsShown = Math.min(hints.length, hintsShown + 1);
-    updateLab(id, { hints: hintsShown });
-    renderHints();
-    hintList.lastElementChild?.setAttribute("tabindex", "-1");
-    hintList.lastElementChild?.focus();
-  });
-  solutionBtn.addEventListener("click", () => {
-    solutionBox.hidden = false;
-    solutionBtn.hidden = true;
-    updateLab(id, { solutionShown: true });
-    const useBtn = h("button", { class: "btn btn-ghost btn-small", type: "button" }, "Put this in the editor");
-    useBtn.addEventListener("click", () => {
-      editor.setValue(config.solution + "\n");
-      editor.focus();
-    });
-    solutionBox.replaceChildren(
-      h("p", {}, "Here's one way to do it. Read it line by line, then try typing it yourself rather than copying: that's how it sticks."),
-      h("pre", { class: "code-block" }, h("code", {}, config.solution)),
-      useBtn,
-    );
-  });
-  renderHints();
 
   async function execute(withTests) {
     output.clear();

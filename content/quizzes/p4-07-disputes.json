@@ -1,0 +1,43 @@
+{
+  "id": "p4-07-disputes",
+  "title": "Quick check: state machines",
+  "questions": [
+    {
+      "id": "q1",
+      "type": "order",
+      "prompt": "Put a typical dispute's journey in order.",
+      "items": ["Opened", "Under review", "Awaiting customer", "Under review", "Resolved"],
+      "explanation": "A case can go back to review after waiting for evidence. That's why the order has review twice."
+    },
+    {
+      "id": "q2",
+      "type": "mcq",
+      "prompt": "What is a **state machine**?",
+      "options": [
+        "A list of states plus the moves allowed between them",
+        "A server that stores states",
+        "A machine in a government office",
+        "A type of database"
+      ],
+      "answer": 0,
+      "explanation": "States + allowed transitions. Code then refuses anything not on the list."
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "prompt": "A request tries to move a **resolved** dispute back to **opened**. What should the API reply?",
+      "options": ["409 Conflict, with a message explaining the move isn't allowed", "200 OK and reopen it", "500 Internal Server Error", "404 Not Found"],
+      "answer": 0,
+      "why": [null, "Quietly allowing an illegal move is how audit problems happen.", "500 means the server crashed. This is a rule working as designed.", "The dispute exists, so 404 would be misleading."],
+      "explanation": "409 says \"that clashes with the current state\". The rule is working, so it's not a crash."
+    },
+    {
+      "id": "q4",
+      "type": "fill",
+      "prompt": "Complete the line that stops the function with an error: `____ ValueError(\"Not allowed\")`",
+      "answer": ["raise"],
+      "caseSensitive": true,
+      "explanation": "`raise` throws an error on purpose. The caller can catch it and turn it into a 409 response."
+    }
+  ]
+}

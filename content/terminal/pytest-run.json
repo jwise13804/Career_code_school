@@ -1,0 +1,37 @@
+{
+  "id": "pytest-run",
+  "title": "Run the tests and read the result",
+  "intro": "This project has a function `card_fee(amount)` and some tests for it. One test is failing. Let's find out why.",
+  "prompt": "~/fees",
+  "welcome": "Practice terminal ready. Type help at any time.",
+  "docs": { "label": "pytest: Get Started", "url": "https://docs.pytest.org/en/stable/getting-started.html" },
+  "always": [
+    { "match": "^ls$", "output": "fees.py  test_fees.py" },
+    { "match": "^cat fees\\.py$", "output": "def card_fee(amount):\n    # 1.5% fee, minimum 20p\n    fee = amount * 0.01\n    return max(round(fee, 2), 0.20)" },
+    { "match": "^cat test_fees\\.py$", "output": "from fees import card_fee\n\ndef test_fee_is_one_and_a_half_percent():\n    assert card_fee(100) == 1.50\n\ndef test_minimum_fee():\n    assert card_fee(5) == 0.20" }
+  ],
+  "steps": [
+    {
+      "goal": "Run all the tests.",
+      "hint": "Just type `pytest`. It finds every file whose name starts with `test_`.",
+      "accept": ["^(python3? -m )?pytest$"],
+      "output": "============================= test session starts ==============================\ncollected 2 items\n\ntest_fees.py F.                                                          [100%]\n\n=================================== FAILURES ===================================\n_____________________ test_fee_is_one_and_a_half_percent ______________________\n\n    def test_fee_is_one_and_a_half_percent():\n>       assert card_fee(100) == 1.50\nE       assert 1.0 == 1.5\nE        +  where 1.0 = card_fee(100)\n\ntest_fees.py:4: AssertionError\n=========================== short test summary info ============================\nFAILED test_fees.py::test_fee_is_one_and_a_half_percent - assert 1.0 == 1.5\n========================= 1 failed, 1 passed in 0.03s ==========================",
+      "explain": "Read it from the bottom: **1 failed, 1 passed**. `F.` means the first test failed and the second passed. The `E` lines show the evidence: `card_fee(100)` gave `1.0` but the test expected `1.5`. Type `cat fees.py` and see if you can spot why."
+    },
+    {
+      "goal": "Look at the code to find the bug (type `cat fees.py`), then run just the fee tests with extra detail using the `-v` (verbose) flag.",
+      "hint": "`pytest -v test_fees.py`",
+      "accept": ["^(python3? -m )?pytest (-v test_fees\\.py|test_fees\\.py -v|-v|--verbose test_fees\\.py|test_fees\\.py --verbose)$"],
+      "output": "test_fees.py::test_fee_is_one_and_a_half_percent FAILED                  [ 50%]\ntest_fees.py::test_minimum_fee PASSED                                    [100%]",
+      "explain": "Verbose mode lists every test by name. Did you spot the bug? The comment says 1.5%, but the code multiplies by `0.01` (that's 1%). It should be `0.015`."
+    },
+    {
+      "goal": "We've changed `0.01` to `0.015` for you (pretend). Run all the tests again.",
+      "hint": "`pytest`",
+      "accept": ["^(python3? -m )?pytest( -v)?$"],
+      "output": "============================= test session starts ==============================\ncollected 2 items\n\ntest_fees.py ..                                                          [100%]\n\n============================== 2 passed in 0.02s ===============================",
+      "explain": "All green. The test caught a bug that would have under-charged every merchant by a third. That's why teams write tests."
+    }
+  ],
+  "finish": "You ran tests, read a failure and confirmed the fix. Reading pytest output calmly is a real job skill."
+}

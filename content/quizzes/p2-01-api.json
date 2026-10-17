@@ -1,0 +1,70 @@
+{
+  "id": "p2-01-api",
+  "title": "Quick check: APIs",
+  "questions": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "prompt": "A customer's banking app shows their balance. What actually happened behind the scenes?",
+      "options": [
+        "The app sent a request to the bank's API, which looked up the balance and sent it back",
+        "The app opened the bank's database directly",
+        "The balance was stored on the phone when the account was opened",
+        "A support agent typed it in"
+      ],
+      "answer": 0,
+      "explanation": "Apps never touch the database directly. They ask the API (the front desk), which checks they're allowed and then looks it up."
+    },
+    {
+      "id": "q2",
+      "type": "match",
+      "prompt": "Match each status code to what it means.",
+      "pairs": [
+        ["`200`", "It worked, here's your data"],
+        ["`201`", "It worked, something new was created"],
+        ["`404`", "Nothing exists at that address"],
+        ["`401`", "Missing or wrong credentials"],
+        ["`500`", "The server broke"]
+      ],
+      "explanation": "2xx = success, 4xx = the caller asked wrong, 5xx = the server broke."
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "prompt": "An app gets a `500` error when customers try to view statements. Whose problem is it most likely to be?",
+      "options": ["The server (the bank's API)", "The customer", "The customer's phone", "The card scheme"],
+      "answer": 0,
+      "explanation": "5xx codes mean the server failed. That's the backend team's problem, and usually an incident."
+    },
+    {
+      "id": "q4",
+      "type": "mcq",
+      "prompt": "Which method should an app use to **open a new dispute**?",
+      "options": ["POST", "GET", "Either. They're the same", "DELETE"],
+      "answer": 0,
+      "why": [null, "GET only *reads* things. It should never create or change anything.", "They're different: GET reads, POST creates.", "DELETE removes things."],
+      "explanation": "POST creates something new. GET is for reading only, so it's safe to repeat."
+    },
+    {
+      "id": "q5",
+      "type": "fill",
+      "prompt": "The part of a request that says *which* thing you want, such as `/customers/3`, is called the ____.",
+      "answer": ["path", "url", "endpoint", "route"],
+      "explanation": "The **path** is the address of the thing. People also say *endpoint* or *route*."
+    },
+    {
+      "id": "q6",
+      "type": "order",
+      "prompt": "Put the steps of checking a balance in the app in order.",
+      "items": [
+        "Customer taps Balance in the app",
+        "App sends GET /accounts/1/balance with the customer's token",
+        "API checks the token is valid",
+        "API looks up the balance in the database",
+        "API replies 200 with the balance as JSON",
+        "App shows £1,240.50"
+      ],
+      "explanation": "Request in, check who's asking, look it up, reply. Every API call follows this shape."
+    }
+  ]
+}

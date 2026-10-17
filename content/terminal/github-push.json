@@ -1,0 +1,62 @@
+{
+  "id": "github-push",
+  "title": "Branch, push and open a pull request",
+  "intro": "Your manager asks for refunds to be shown separately. You'll make the change on a **branch**, then push it to GitHub so it can be reviewed.",
+  "prompt": "~/statement-totals",
+  "welcome": "You're inside your repository from the last lesson. Type help at any time.",
+  "docs": { "label": "GitHub's Hello World guide", "url": "https://docs.github.com/en/get-started/start-your-journey/hello-world" },
+  "always": [
+    { "match": "^ls$", "output": "totals.py" },
+    { "match": "^git branch$", "output": "* main" },
+    { "match": "^git log( --oneline)?$", "output": "3f9c2ab (HEAD -> main) Add transaction totaller" }
+  ],
+  "steps": [
+    {
+      "goal": "Create a new branch called `add-refunds` and switch to it.",
+      "hint": "`git switch -c add-refunds` (older guides write `git checkout -b add-refunds`, which does the same).",
+      "accept": ["^git (switch -c|checkout -b) add-refunds$"],
+      "output": "Switched to a new branch 'add-refunds'",
+      "explain": "A branch is a safe copy to work on, like drafting a reply before sending it. `main` stays untouched until your change is approved.",
+      "mistakes": [
+        { "match": "^git (switch -c|checkout -b) (\\S+)$", "output": "Switched to a new branch '$2'", "say": "That works fine in real life! For this exercise, please call it `add-refunds` so the later steps match. Type `git switch -c add-refunds`." },
+        { "match": "^git branch add-refunds$", "output": "", "say": "That *creates* the branch but doesn't move you onto it. `git switch -c add-refunds` does both in one go." }
+      ]
+    },
+    {
+      "goal": "We've edited `totals.py` for you (pretend!). Stage the change.",
+      "hint": "Same as before: `git add totals.py`.",
+      "accept": ["^git add (totals\\.py|\\.|-A|--all)$"],
+      "output": "",
+      "explain": "Staged.",
+      "extra": [{ "match": "^git status$", "output": "On branch add-refunds\nChanges not staged for commit:\n\tmodified:   totals.py" }, { "match": "^git diff$", "output": "-    return round(sum(amounts), 2)\n+    paid = [a for a in amounts if a > 0]\n+    return round(sum(paid), 2)" }]
+    },
+    {
+      "goal": "Commit it with a clear message.",
+      "hint": "`git commit -m \"Show refunds separately\"`",
+      "accept": ["^git commit -m ([\"'])(.+)\\1$"],
+      "output": "[add-refunds 8d1e4f0] $2\n 1 file changed, 2 insertions(+), 1 deletion(-)",
+      "explain": "Committed on your branch.",
+      "mistakes": [{ "match": "^git commit", "say": "Remember the message in quotes: `git commit -m \"Show refunds separately\"`." }]
+    },
+    {
+      "goal": "Connect your folder to your empty GitHub repository. Its address is `https://github.com/you/statement-totals.git`.",
+      "hint": "`git remote add origin https://github.com/you/statement-totals.git`. *origin* is the usual nickname for your main copy on GitHub.",
+      "accept": ["^git remote add origin (https://github\\.com/\\S+|git@github\\.com:\\S+)$"],
+      "output": "",
+      "explain": "Git now knows where *origin* is. You only do this once per project.",
+      "mistakes": [{ "match": "^git push", "output": "fatal: 'origin' does not appear to be a git repository", "say": "Git doesn't know where to push yet. Add the remote first." }]
+    },
+    {
+      "goal": "Push your branch to GitHub.",
+      "hint": "`git push -u origin add-refunds`. The `-u` remembers the link, so next time `git push` on its own is enough.",
+      "accept": ["^git push (-u |--set-upstream )?origin add-refunds$"],
+      "output": "Enumerating objects: 5, done.\nWriting objects: 100% (3/3), 412 bytes, done.\nremote:\nremote: Create a pull request for 'add-refunds' on GitHub by visiting:\nremote:      https://github.com/you/statement-totals/pull/new/add-refunds\nremote:\nTo https://github.com/you/statement-totals.git\n * [new branch]      add-refunds -> add-refunds\nbranch 'add-refunds' set up to track 'origin/add-refunds'.",
+      "explain": "Your branch is on GitHub. Next, in the browser, you'd open a **pull request**: a request for someone to review and merge your change into `main`. It works like a refund that needs a second approver.",
+      "mistakes": [
+        { "match": "^git push$", "output": "fatal: The current branch add-refunds has no upstream branch.\nTo push the current branch and set the remote as upstream, use\n\n    git push --set-upstream origin add-refunds", "say": "The first push of a new branch needs to say *where*. Git even printed the fix. You can use the shorter `-u` instead of `--set-upstream`." },
+        { "match": "^git push (-u )?origin main$", "output": "Everything up-to-date", "say": "That pushes `main`, which hasn't changed. Your work is on `add-refunds`." }
+      ]
+    }
+  ],
+  "finish": "Branch → commit → push → pull request. This is how every team you'll join works."
+}

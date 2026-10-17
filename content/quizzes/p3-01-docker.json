@@ -1,0 +1,52 @@
+{
+  "id": "p3-01-docker",
+  "title": "Quick check: Docker",
+  "questions": [
+    {
+      "id": "q1",
+      "type": "match",
+      "prompt": "Match each Docker word to its comparison.",
+      "pairs": [
+        ["Dockerfile", "The recipe card"],
+        ["Image", "The sealed meal kit"],
+        ["Container", "The meal, cooked and served"]
+      ],
+      "explanation": "The Dockerfile describes how to build. The image is what gets built. A container is that image running."
+    },
+    {
+      "id": "q2",
+      "type": "mcq",
+      "prompt": "What problem does Docker mainly solve?",
+      "options": [
+        "Code that works on one computer but not another, because their setups differ",
+        "Code that has bugs in it",
+        "Slow internet connections",
+        "Storing customer passwords"
+      ],
+      "answer": 0,
+      "explanation": "Docker packs code with its exact setup, so it behaves the same everywhere. It doesn't fix bugs. Tests help with that."
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "prompt": "You run `docker run mini-bank` but your browser can't reach http://localhost:8000. What's most likely missing?",
+      "options": ["The port mapping `-p 8000:8000`", "The `.` at the end", "A FROM line", "An internet connection"],
+      "answer": 0,
+      "explanation": "Containers are sealed. Without `-p 8000:8000` nothing outside can reach the app inside."
+    },
+    {
+      "id": "q4",
+      "type": "order",
+      "prompt": "Put these in the order they happen.",
+      "items": ["Write a Dockerfile", "docker build -t mini-bank .", "docker run -p 8000:8000 mini-bank", "Open http://localhost:8000"],
+      "explanation": "Recipe, then build the image, then run a container, then use it."
+    },
+    {
+      "id": "q5",
+      "type": "fill",
+      "prompt": "In a Dockerfile, which instruction says what to start from, as in `____ python:3.12-slim`?",
+      "answer": ["FROM", "from"],
+      "explanation": "`FROM` picks the starting image. Almost every Dockerfile begins with it."
+    }
+  ]
+}

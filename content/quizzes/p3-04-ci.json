@@ -1,0 +1,36 @@
+{
+  "id": "p3-04-ci",
+  "title": "Quick check: continuous integration",
+  "questions": [
+    {
+      "id": "q1",
+      "type": "order",
+      "prompt": "Put a typical CI pipeline in order.",
+      "items": ["Checkout the code", "Install dependencies", "Lint", "Run tests", "Deploy"],
+      "explanation": "Each stage only runs if the previous one passed, so deploy always comes last."
+    },
+    {
+      "id": "q2",
+      "type": "mcq",
+      "prompt": "The tests stage fails. What happens to the deploy?",
+      "options": ["It's skipped, so the broken code doesn't go live", "It deploys anyway, with a warning", "It deploys the old tests", "It waits 24 hours then deploys"],
+      "answer": 0,
+      "explanation": "That's the point of CI: a red stage blocks everything after it."
+    },
+    {
+      "id": "q3",
+      "type": "fill",
+      "prompt": "GitHub Actions workflow files live in a folder called `.github/________`.",
+      "answer": ["workflows", "workflows/"],
+      "explanation": "`.github/workflows/`. Every `.yml` file in there is a workflow."
+    },
+    {
+      "id": "q4",
+      "type": "mcq",
+      "prompt": "In the workflow file, what does `on: [push]` mean?",
+      "options": ["Run this workflow every time code is pushed", "Push the code to production", "Turn the workflow on", "Only run when someone presses a button"],
+      "answer": 0,
+      "explanation": "`on` says **when** the workflow runs. `push` means on every push to the repository."
+    }
+  ]
+}

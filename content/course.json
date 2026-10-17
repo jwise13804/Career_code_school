@@ -13,11 +13,154 @@
           "title": "Python basics",
           "summary": "One idea per lesson. Every example uses cards, payments and customers.",
           "lessons": [
-            {
-              "id": "p1-01-hello",
-              "title": "Your first line of Python",
-              "minutes": 12
-            }
+            { "id": "p1-01-hello", "title": "Your first line of Python", "minutes": 12 },
+            { "id": "p1-02-variables", "title": "Variables: labels for account details", "minutes": 12 },
+            { "id": "p1-03-numbers", "title": "Numbers and money", "minutes": 14 },
+            { "id": "p1-04-if-else", "title": "Decisions: approve or decline", "minutes": 14 },
+            { "id": "p1-05-loops", "title": "Loops: working through the queue", "minutes": 14 },
+            { "id": "p1-06-functions", "title": "Functions: your saved macros", "minutes": 15 },
+            { "id": "p1-07-lists", "title": "Lists: a customer's transactions", "minutes": 14 },
+            { "id": "p1-08-dicts", "title": "Dictionaries: customer records", "minutes": 15 },
+            { "id": "p1-09-errors", "title": "Reading error messages calmly", "minutes": 12 }
+          ]
+        },
+        {
+          "title": "Mini project",
+          "lessons": [{ "id": "p1-10-project-total", "title": "Mini project: total a list of transactions", "minutes": 15 }]
+        },
+        {
+          "title": "SQL: asking the database",
+          "summary": "A real database of customers, cards, transactions and disputes runs in your browser.",
+          "lessons": [
+            { "id": "p1-11-sql-select", "title": "SELECT: looking up records", "minutes": 12 },
+            { "id": "p1-12-sql-where", "title": "WHERE and ORDER BY: filtering", "minutes": 14 },
+            { "id": "p1-13-sql-join", "title": "JOIN: connecting cards to customers", "minutes": 15 },
+            { "id": "p1-14-sql-group-by", "title": "GROUP BY: totals and counts", "minutes": 15 }
+          ]
+        },
+        {
+          "title": "Git and GitHub",
+          "lessons": [
+            { "id": "p1-15-git-basics", "title": "Git: case notes for your code", "minutes": 14 },
+            { "id": "p1-16-github", "title": "GitHub: sharing your work", "minutes": 14 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p2",
+      "title": "APIs, databases and tests",
+      "months": "Months 4 to 6",
+      "illustration": "phase2",
+      "summary": "Learn how apps talk to each other, build an API with FastAPI, store data in a database and prove it works with tests.",
+      "project": "An API that lists and adds customers, with tests.",
+      "units": [
+        {
+          "title": "How APIs work",
+          "lessons": [
+            { "id": "p2-01-what-is-an-api", "title": "What an API is: the front desk", "minutes": 14 },
+            { "id": "p2-02-status-codes", "title": "Methods and status codes", "minutes": 14, "status": "planned" },
+            { "id": "p2-03-json", "title": "JSON: the shape of a request", "minutes": 12, "status": "planned" },
+            { "id": "p2-04-write-a-handler", "title": "Write your first request handler", "minutes": 15 }
+          ]
+        },
+        {
+          "title": "Building with FastAPI",
+          "lessons": [
+            { "id": "p2-05-fastapi-first-app", "title": "FastAPI: your first endpoint", "minutes": 15, "status": "planned" },
+            { "id": "p2-06-path-and-query", "title": "Path and query parameters", "minutes": 14, "status": "planned" },
+            { "id": "p2-07-validation", "title": "Validating input with Pydantic", "minutes": 15, "status": "planned" }
+          ]
+        },
+        {
+          "title": "Databases from code",
+          "lessons": [
+            { "id": "p2-08-sqlite-from-python", "title": "Using a database from Python", "minutes": 15, "status": "planned" },
+            { "id": "p2-09-sql-injection", "title": "Safe queries and SQL injection", "minutes": 12, "status": "planned" }
+          ]
+        },
+        {
+          "title": "Testing",
+          "lessons": [
+            { "id": "p2-10-pytest-basics", "title": "pytest: checks that run themselves", "minutes": 15 },
+            { "id": "p2-11-testing-an-api", "title": "Testing an API", "minutes": 15, "status": "planned" }
+          ]
+        },
+        {
+          "title": "Mini project",
+          "lessons": [{ "id": "p2-12-project-customers-api", "title": "Mini project: a customers API", "minutes": 15, "status": "planned" }]
+        }
+      ]
+    },
+    {
+      "id": "p3",
+      "title": "Shipping code: Docker, CI and cloud",
+      "months": "Months 7 to 9",
+      "illustration": "phase3",
+      "summary": "Package your API so it runs anywhere, let robots check every change, and learn how the cloud and secrets work.",
+      "project": "Your customers API in a container, checked automatically on every push.",
+      "units": [
+        {
+          "title": "Docker",
+          "lessons": [
+            { "id": "p3-01-docker-concepts", "title": "Docker: a sealed kit for your app", "minutes": 14 },
+            { "id": "p3-02-dockerfile", "title": "Writing a Dockerfile", "minutes": 15, "status": "planned" },
+            { "id": "p3-03-compose", "title": "Docker Compose: app plus database", "minutes": 14, "status": "planned" }
+          ]
+        },
+        {
+          "title": "Automated checks",
+          "lessons": [
+            { "id": "p3-04-github-actions", "title": "GitHub Actions: tests on every push", "minutes": 15 },
+            { "id": "p3-05-linting", "title": "Linting and formatting", "minutes": 12, "status": "planned" }
+          ]
+        },
+        {
+          "title": "Cloud fundamentals",
+          "lessons": [
+            { "id": "p3-06-cloud-basics", "title": "What the cloud actually is", "minutes": 14, "status": "planned" },
+            { "id": "p3-07-deploy", "title": "Deploying a container", "minutes": 15, "status": "planned" },
+            { "id": "p3-08-logs", "title": "Logs and monitoring", "minutes": 12, "status": "planned" }
+          ]
+        },
+        {
+          "title": "Security basics",
+          "lessons": [{ "id": "p3-09-secrets", "title": "Keeping secrets out of code", "minutes": 14, "status": "planned" }]
+        }
+      ]
+    },
+    {
+      "id": "p4",
+      "title": "Capstone: a mini card payments API",
+      "months": "Months 10 to 12",
+      "illustration": "phase4",
+      "summary": "Put it all together in a payments API that never double-charges, keeps a proper ledger and handles disputes. Then turn it into job applications.",
+      "project": "A card payments API with idempotency keys, a ledger table, a dispute workflow, tests and a README.",
+      "units": [
+        {
+          "title": "How card payments really work",
+          "lessons": [
+            { "id": "p4-01-tap-to-settlement", "title": "From tap to settlement", "minutes": 15 },
+            { "id": "p4-02-pci-dss", "title": "PCI DSS: protecting card data", "minutes": 12 },
+            { "id": "p4-03-psd2-sca", "title": "PSD2 and strong customer authentication", "minutes": 12 }
+          ]
+        },
+        {
+          "title": "Build the capstone",
+          "lessons": [
+            { "id": "p4-04-capstone-plan", "title": "Planning the payments API", "minutes": 14, "status": "planned" },
+            { "id": "p4-05-idempotency", "title": "Idempotency keys: charge once", "minutes": 15 },
+            { "id": "p4-06-ledger", "title": "A ledger table that always balances", "minutes": 15, "status": "planned" },
+            { "id": "p4-07-dispute-workflow", "title": "The dispute workflow", "minutes": 15 },
+            { "id": "p4-08-capstone-tests", "title": "Testing the capstone", "minutes": 15, "status": "planned" },
+            { "id": "p4-09-readme", "title": "Writing a README that gets read", "minutes": 12, "status": "planned" }
+          ]
+        },
+        {
+          "title": "Get the job",
+          "lessons": [
+            { "id": "p4-10-portfolio", "title": "Your portfolio on GitHub", "minutes": 15 },
+            { "id": "p4-11-job-applications", "title": "Applying to UK fintechs and banks", "minutes": 15 }
           ]
         }
       ]

@@ -60,7 +60,7 @@ for (const phase of course?.phases || []) {
         continue;
       }
       const md = read(file);
-      const title = md.match(/^title:\s*(.+)$/m)?.[1]?.trim();
+      const title = md.match(/^title:\s*(.+)$/m)?.[1]?.trim().replace(/^(["'])(.*)\1$/, "$2");
       if (title !== lesson.title) errors.push(`${file}: title "${title}" doesn't match course.json "${lesson.title}"`);
       checkMarkdown(file, md);
     }

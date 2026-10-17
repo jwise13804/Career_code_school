@@ -1,0 +1,46 @@
+{
+  "id": "p4-05-idempotency",
+  "title": "Quick check: idempotency",
+  "questions": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "prompt": "Which of these actions is naturally **idempotent** (safe to repeat)?",
+      "options": ["Fetching a customer's balance", "Taking a £25 payment", "Sending a text message", "Adding a transaction to a ledger"],
+      "answer": 0,
+      "explanation": "Reading changes nothing, so it's safe to repeat. The others create something new each time, unless we add an idempotency key."
+    },
+    {
+      "id": "q2",
+      "type": "mcq",
+      "prompt": "The app retries a payment because it never got a reply. The retry has the **same** idempotency key. What should the server do?",
+      "options": ["Return the saved result from the first attempt, without charging again", "Charge again: it's a new request", "Return an error and ask the customer to try later", "Refund both"],
+      "answer": 0,
+      "explanation": "Same key = same order. The server replays the original answer, so the customer is charged once."
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "prompt": "The customer places a **second, separate** order for another coffee. What key should the app send?",
+      "options": ["A new key", "The same key as the first order", "No key", "The customer's card number"],
+      "answer": 0,
+      "why": [null, "Then the server would think it's a retry and wouldn't charge for the second coffee.", "Without a key, retries of this order wouldn't be protected.", "Never use card numbers as keys. That's sensitive data (see the PCI DSS lesson)."],
+      "explanation": "One key per order. Retries of that order reuse it; a new order gets a new one."
+    },
+    {
+      "id": "q4",
+      "type": "bug",
+      "prompt": "This version still double-charges. Which line is the bug?",
+      "code": "def take_payment(key, amount):\n    payment = {\"id\": len(ledger) + 1, \"amount\": amount}\n    ledger.append(payment)\n    if key in seen:\n        return seen[key]\n    seen[key] = payment\n    return payment",
+      "answer": 4,
+      "explanation": "The check happens *after* the payment is already added to the ledger (lines 2 and 3). The `if key in seen` check must come first, before charging."
+    },
+    {
+      "id": "q5",
+      "type": "fill",
+      "prompt": "The request header that carries the key is usually called `____-Key`.",
+      "answer": ["Idempotency", "idempotency"],
+      "explanation": "`Idempotency-Key`: used by Stripe, Adyen and many others."
+    }
+  ]
+}

@@ -10,3 +10,10 @@ export async function setCode(page, scope, code) {
   await page.keyboard.insertText(code);
   await expect(content).toContainText(code.split("\n")[0].trim());
 }
+
+/** Climb the hint ladder and load the official solution into the editor. */
+export async function useSolution(scope) {
+  for (let i = 1; i <= 3; i++) await scope.getByRole("button", { name: `Show hint ${i} of 3` }).click();
+  await scope.getByRole("button", { name: "Show the solution" }).click();
+  await scope.getByRole("button", { name: "Put this in the editor" }).click();
+}
