@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Career Code School</title>
+    <meta name="description" content="A free, friendly course from card-payments customer support to junior backend developer. Python, SQL, APIs, testing, Docker and a card payments capstone, all in your browser." />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#0B6E69" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <script>
+      // Apply the saved theme before first paint so there's no flash.
+      try {
+        var saved = JSON.parse(localStorage.getItem("ccs-progress-v1") || "{}");
+        var t = saved.settings && saved.settings.theme;
+        if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+    <script type="module" src="assets/js/app.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="#/" aria-label="Career Code School, home">
+        <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="16" class="brand-bg"/><path d="M20 22l-8 10 8 10M44 22l8 10-8 10" fill="none" class="brand-stroke" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="32" cy="32" r="6" class="brand-dot"/></svg>
+        <span class="brand-text">Career Code School</span>
+      </a>
+      <nav class="site-nav" aria-label="Main">
+        <a href="#/"><span class="nav-icon" aria-hidden="true">🗺️</span><span>Map</span></a>
+        <a href="#/review"><span class="nav-icon" aria-hidden="true">🔁</span><span>Review</span><span id="review-count" class="nav-badge" hidden></span></a>
+        <a href="#/glossary"><span class="nav-icon" aria-hidden="true">📖</span><span>Glossary</span></a>
+        <a href="#/practice"><span class="nav-icon" aria-hidden="true">🧪</span><span>Practice</span></a>
+        <a href="#/progress"><span class="nav-icon" aria-hidden="true">💾</span><span>Progress</span></a>
+      </nav>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-pressed="false">
+        <span aria-hidden="true" class="theme-icon">◐</span><span class="theme-label">Dark mode</span>
+      </button>
+    </header>
+    <main id="main" tabindex="-1">
+      <div class="page narrow loading-page"><p><span class="spinner" aria-hidden="true"></span> Loading your course…</p></div>
+    </main>
+    <footer class="site-footer">
+      <p>Free and open. Your progress stays in this browser, and nothing is sent anywhere. Simulations are labelled; real tools are linked for your own computer.</p>
+    </footer>
+    <div id="live-region" class="sr-only" aria-live="polite"></div>
+    <noscript><p class="page narrow">This course needs JavaScript turned on, because the code runs right here in your browser.</p></noscript>
+  </body>
+</html>

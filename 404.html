@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Page not found · Career Code School</title>
+    <style>
+      body { font-family: system-ui, sans-serif; background: #fbf6ee; color: #1f2a2e; display: grid; place-items: center; min-height: 100vh; margin: 0; padding: 16px; text-align: center; }
+      a { color: #0b6e69; font-weight: 700; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>This page took a wrong turn</h1>
+      <p>Let's get you back on the route.</p>
+      <p><a id="home" href="./">Go to the course map</a></p>
+    </main>
+    <script>
+      // Project sites live at /repo-name/. Send people to that root, not the domain root.
+      var parts = location.pathname.split("/").filter(Boolean);
+      if (location.hostname.endsWith("github.io") && parts.length) document.getElementById("home").href = "/" + parts[0] + "/";
+    </script>
+  </body>
+</html>
