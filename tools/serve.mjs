@@ -34,7 +34,7 @@ const types = {
 };
 
 // Only files GitHub Pages would actually publish (see .github/workflows/pages.yml).
-const published = ["index.html", "404.html", "favicon.svg", "assets/", "content/"];
+const published = ["index.html", "404.html", "favicon.svg", "assets/", "content/", "chess/"];
 
 async function send(res, file) {
   try {

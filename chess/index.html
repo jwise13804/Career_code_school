@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chess Camera</title>
+  <meta name="description" content="Point your camera at a chess board: it follows the game, checks every move is legal and suggests what to play.">
+  <link rel="icon" href="../favicon.svg">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Chess Camera</h1>
+    <p class="lede">Point your camera at a real board. It follows the game, tells you if a move is legal, rates it, and suggests what to play.</p>
+  </header>
+
+  <main>
+    <section class="panel" aria-labelledby="cam-h">
+      <h2 id="cam-h">1. Camera</h2>
+      <div class="stage" id="stage">
+        <video id="video" playsinline muted></video>
+        <canvas id="overlay" aria-label="Camera view with the board grid drawn over it"></canvas>
+        <p class="placeholder" id="placeholder">Camera is off</p>
+      </div>
+      <p class="status" id="cam-status" role="status">Start the camera, then hold your phone steady above the board (a tripod or a stack of books works best).</p>
+      <div class="buttons">
+        <button id="btn-camera" class="primary">Start camera</button>
+        <button id="btn-corners" disabled>Mark corners</button>
+        <button id="btn-rotate" disabled title="Turn the grid labels by 90° if a1 is in the wrong place">Rotate labels</button>
+        <button id="btn-track" disabled>Start tracking</button>
+        <button id="btn-resync" disabled title="Use when the board matches the digital board but the camera lost track">Re-sync</button>
+      </div>
+      <details>
+        <summary>Tips and settings</summary>
+        <ul class="tips">
+          <li>Shoot from as high above the board as you can, with even light and no strong shadows.</li>
+          <li>Tap the four <strong>outer corners</strong> of the playing area in the order shown: a1 (White's queen-side rook), h1, h8, a8.</li>
+          <li>Set up the start position (it should match the digital board), then press <em>Start tracking</em>.</li>
+          <li>Make a move and take your hand away. After about a second the move is read and checked.</li>
+          <li>If a move is misread, press <em>Undo</em> and tap the move on the digital board instead.</li>
+        </ul>
+        <label class="field">Sensitivity
+          <input type="range" id="sensitivity" min="8" max="60" value="22">
+          <span class="hint">Lower = notices smaller changes (use in dim light). Higher = ignores more noise.</span>
+        </label>
+      </details>
+    </section>
+
+    <section class="panel" aria-labelledby="game-h">
+      <h2 id="game-h">2. Game</h2>
+      <div class="feedback" id="feedback" role="alert" hidden></div>
+      <div class="board-wrap">
+        <div class="board" id="board" role="grid" aria-label="Digital chess board"></div>
+        <svg class="arrows" id="arrows" viewBox="0 0 8 8" aria-hidden="true"></svg>
+      </div>
+      <p class="turn" id="turn"></p>
+      <div class="suggest" id="suggest"></div>
+      <div class="buttons">
+        <button id="btn-undo">Undo</button>
+        <button id="btn-flip">Flip board</button>
+        <label class="toggle"><input type="checkbox" id="show-hints" checked> Suggest moves</label>
+        <button id="btn-new">New game</button>
+      </div>
+      <details id="legal-wrap">
+        <summary id="legal-summary">Legal moves</summary>
+        <div id="legal" class="legal"></div>
+      </details>
+      <h3>Moves</h3>
+      <ol class="history" id="history"></ol>
+      <details>
+        <summary>Start from a position (FEN)</summary>
+        <label class="field">FEN
+          <input type="text" id="fen" spellcheck="false" autocomplete="off">
+        </label>
+        <button id="btn-fen">Load position</button>
+      </details>
+    </section>
+  </main>
+
+  <footer>
+    <p>Everything runs in your browser; the video never leaves your device. The camera only sees which squares changed, so it follows the game from a known position rather than recognising pieces. The engine is a quick one, so treat its ratings as a friendly guide.</p>
+  </footer>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

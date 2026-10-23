@@ -22,6 +22,7 @@ const copies = [
   ["node_modules/jszip/dist/jszip.min.js", "jszip.min.js"],
   ["node_modules/sql.js/dist/sql-wasm.js", "sql-wasm.js"],
   ["node_modules/sql.js/dist/sql-wasm.wasm", "sql-wasm.wasm"],
+  ["node_modules/chess.js/dist/esm/chess.js", "chess.js"],
 ];
 for (const [from, to] of copies) copyFileSync(from, `${out}/${to}`);
 console.log("Vendor files written to", out);

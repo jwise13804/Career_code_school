@@ -185,6 +185,20 @@ Open the lesson's quiz file in `content/quizzes/` and add an object to `question
 
 Add to `content/glossary.json`: `slug`, `term`, `short` (plain definition), `everyday` (support-desk comparison), and optionally `aka` (extra search words) and `lesson`. Link from any lesson with `[[slug]]` or `[[slug|custom text]]`.
 
+## Chess Camera (`chess/`)
+
+A separate mini app at `/chess/` (on Pages: `https://<user>.github.io/career_code_school/chess/`). Point a phone camera at a real board and it:
+
+- maps the board: you tap the four outer corners (a1, h1, h8, a8) and it draws the 8x8 grid over the video;
+- follows the game: after each move (once your hand is out of view for about a second) it works out which squares changed and matches them against the legal moves, so castling, captures, en passant and promotions (to a queen) are all read;
+- says whether a move is **legal**, and if not, why ("a knight can't go from b8 to b5", "not Black's turn", "you're in check", "that piece is pinned", "you can't castle right now"), then waits for the piece to be put back;
+- **rates** each legal move (Best, Good, Inaccuracy, Mistake, Blunder) and **suggests** the next move, with an arrow on the digital board and on the camera view;
+- lists every legal move, and lets you tap moves on the digital board when the camera misreads one.
+
+How it works: it doesn't recognise pieces. It follows the game from a known position (the start, or any FEN you paste), so knowing which squares changed is enough. `chess/vision.js` holds the board mapping (a homography) and the change matching; `chess/engine-worker.js` is a small alpha-beta engine in a Web Worker (roughly beginner-club strength, so ratings are a guide, not Stockfish). Rules come from [chess.js](https://github.com/jhlywa/chess.js), vendored in `assets/vendor/chess.js`.
+
+Best results: camera held still above the board (a tripod or a stack of books), even light, the board filling most of the frame. Camera access needs https (GitHub Pages is fine) or `localhost`. `tests/chess.spec.js` drives the whole flow with a synthetic camera stream.
+
 ## Running locally
 
 ```bash
